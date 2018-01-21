@@ -181,6 +181,7 @@
 			children = (
 				BFBD472E2014EB1600C43D78 /* GoTimeGroup.swift */,
 				BFBD47302014EC2200C43D78 /* GoTimeConfig.swift */,
+				BFE0E979200FF74A0049E939 /* GoTime.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -188,7 +189,6 @@
 		BFE0E978200FF7090049E939 /* viewmodel */ = {
 			isa = PBXGroup;
 			children = (
-				BFE0E979200FF74A0049E939 /* GoTime.swift */,
 			);
 			path = viewmodel;
 			sourceTree = "<group>";
