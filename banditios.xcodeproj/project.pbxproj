@@ -22,6 +22,9 @@
 		BF45CD70200D12720061AEB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF45CD6E200D12720061AEB0 /* LaunchScreen.storyboard */; };
 		BF45CD7B200D12720061AEB0 /* banditiosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CD7A200D12720061AEB0 /* banditiosUITests.swift */; };
 		BF6799EC2012431B0078FAF7 /* TimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6799EB2012431B0078FAF7 /* TimeDisplay.swift */; };
+		BFBD472C2013F0A700C43D78 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBD472B2013F0A700C43D78 /* Chain.swift */; };
+		BFBD472F2014EB1600C43D78 /* GoTimeGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBD472E2014EB1600C43D78 /* GoTimeGroup.swift */; };
+		BFBD47312014EC2200C43D78 /* GoTimeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBD47302014EC2200C43D78 /* GoTimeConfig.swift */; };
 		BFE0E97A200FF74A0049E939 /* GoTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE0E979200FF74A0049E939 /* GoTime.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +59,9 @@
 		BF45CD7A200D12720061AEB0 /* banditiosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = banditiosUITests.swift; sourceTree = "<group>"; };
 		BF45CD7C200D12720061AEB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF6799EB2012431B0078FAF7 /* TimeDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplay.swift; sourceTree = "<group>"; };
+		BFBD472B2013F0A700C43D78 /* Chain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
+		BFBD472E2014EB1600C43D78 /* GoTimeGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTimeGroup.swift; sourceTree = "<group>"; };
+		BFBD47302014EC2200C43D78 /* GoTimeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTimeConfig.swift; sourceTree = "<group>"; };
 		BFE0E979200FF74A0049E939 /* GoTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTime.swift; sourceTree = "<group>"; };
 		CF4784F3540CF31FDEA2166C /* Pods-banditios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banditios.release.xcconfig"; path = "Pods/Target Support Files/Pods-banditios/Pods-banditios.release.xcconfig"; sourceTree = "<group>"; };
 		D9A5BFF8CA0E40C2FCFAD777 /* Pods-banditiosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banditiosUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-banditiosUITests/Pods-banditiosUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +142,8 @@
 		BF45CD62200D12720061AEB0 /* banditios */ = {
 			isa = PBXGroup;
 			children = (
+				BFBD472D20144B2200C43D78 /* model */,
+				BFBD472A2013F08E00C43D78 /* utils */,
 				BFE0E978200FF7090049E939 /* viewmodel */,
 				BF009C71200D22690071A142 /* ext */,
 				BF45CD63200D12720061AEB0 /* AppDelegate.swift */,
@@ -158,6 +166,23 @@
 				BF45CD7C200D12720061AEB0 /* Info.plist */,
 			);
 			path = banditiosUITests;
+			sourceTree = "<group>";
+		};
+		BFBD472A2013F08E00C43D78 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				BFBD472B2013F0A700C43D78 /* Chain.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		BFBD472D20144B2200C43D78 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				BFBD472E2014EB1600C43D78 /* GoTimeGroup.swift */,
+				BFBD47302014EC2200C43D78 /* GoTimeConfig.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		BFE0E978200FF7090049E939 /* viewmodel */ = {
@@ -392,9 +417,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFBD47312014EC2200C43D78 /* GoTimeConfig.swift in Sources */,
 				BF009C7B200D35550071A142 /* GoTimesTableViewCell.swift in Sources */,
 				BF009C74200D22C70071A142 /* UIView+Bandit.swift in Sources */,
+				BFBD472F2014EB1600C43D78 /* GoTimeGroup.swift in Sources */,
 				BF45CD68200D12720061AEB0 /* SecondViewController.swift in Sources */,
+				BFBD472C2013F0A700C43D78 /* Chain.swift in Sources */,
 				BF45CD64200D12720061AEB0 /* AppDelegate.swift in Sources */,
 				BF45CD66200D12720061AEB0 /* FirstViewController.swift in Sources */,
 				BF6799EC2012431B0078FAF7 /* TimeDisplay.swift in Sources */,
