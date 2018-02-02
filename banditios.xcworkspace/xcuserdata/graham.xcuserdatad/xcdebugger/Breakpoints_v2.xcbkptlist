@@ -9,77 +9,61 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "banditios/GoTimesTableViewCell.swift"
-            timestampString = "538098864.671448"
+            filePath = "banditios/FirstViewController.swift"
+            timestampString = "539240336.225877"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "configure(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "banditios.GoTimesTableViewCell.configure(banditios.GoTime) -&gt; ()"
-                  moduleName = "banditios"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/graham/projects/timebandit/git/banditios/banditios/banditios/GoTimesTableViewCell.swift"
-                  timestampString = "538066792.6369621"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "1202">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__ObjC.Timer) -&gt; () in banditios.GoTimesTableViewCell.configure(banditios.GoTime) -&gt; ()"
-                  moduleName = "banditios"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/graham/projects/timebandit/git/banditios/banditios/banditios/GoTimesTableViewCell.swift"
-                  timestampString = "538066792.638845"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "31">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "banditios/GoTimesTableViewCell.swift"
-            timestampString = "538098864.671887"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "configure(_:)"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "configureObservables()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "banditios/GoTimesTableViewCell.swift"
-            timestampString = "538098864.672175"
+            filePath = "banditios/viewmodel/GoTimeViewModel.swift"
+            timestampString = "539240336.226722"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "configure(_:)"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "goTimeSectionObs"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "banditios/FirstViewController.swift"
+            timestampString = "539240336.2270221"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "FirstViewController"
+            landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "banditios/FirstViewController.swift"
+            timestampString = "539240336.227512"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "buildCell(tableView:row:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

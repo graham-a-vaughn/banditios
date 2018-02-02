@@ -48,14 +48,11 @@ extension GoTime: ChainMutable {
     }
 }
 
-extension GoTime : IdentifiableType, Equatable {
-    typealias Identity = Int
-    
-    var identity : Identity {
-        return start.hashValue
-    }
-    
+extension GoTime: Equatable {
+
     static func ==(lhs: GoTime, rhs: GoTime) -> Bool {
-        return lhs.identity == rhs.identity
+        return lhs.type == rhs.type
+            && lhs.start == rhs.start
+            && lhs.end == rhs.end
     }
 }

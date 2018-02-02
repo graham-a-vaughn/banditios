@@ -13,19 +13,22 @@ import RxCocoa
 import RxDataSources
 
 class FirstViewController: UIViewController {
-    static let chill = GoTimeType(name: "Not Work", primary: false)
-    static let work = GoTimeType(name: "Work", primary: true)
-
+    static let cellHeight: CGFloat = 64.0
+    
+    @IBOutlet var activeView: ActiveGoTimeView!
     @IBOutlet var goButton: UIButton!
     @IBOutlet var stopButton: UIButton!
     @IBOutlet var goTimesTable: UITableView!
     
+    var viewModel = GoTimeViewModel()
+    
     private let goTimeGroup = GoTimeGroup(goTimes: nil)
-    private let typeConfig = GoTimeTypeConfig(FirstViewController.chill)
-    private var dataSource: RxTableViewSectionedAnimatedDataSource<GoTimeGroup>?
+    
+    private var dataSource: RxTableViewSectionedAnimatedDataSource<GoTimeSection>?
     
     private var goTimeButtonTappedObs: Observable<Void> = Observable.empty()
-    private var goTimeGroupCollectionObs: Observable<[GoTimeGroup]> = Observable.empty()
+    private var stopButtonTappedObs: Observable<Void> = Observable.empty()
+    private var goTimeGroupCollectionObs: Observable<[GoTimeSection]> = Observable.empty()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,26 +36,34 @@ class FirstViewController: UIViewController {
     }
     
     private func configure() {
-        configureTypes()
+        goTimesTable.delegate = self
         configureObservables()
     }
     
-    private func configureTypes() {
-        typeConfig.typeMap[FirstViewController.chill] = FirstViewController.work
-        typeConfig.typeMap[FirstViewController.work] = FirstViewController.chill
-    }
+    
     
     private func configureObservables() {
         goTimeButtonTappedObs = goButton.rx.tap.asObservable()
-        goTimeButtonTappedObs.subscribe(onNext: { [weak self] in
-            guard let strongSelf = self else { return }
+        goTimeButtonTappedObs
+            .subscribe(onNext: { [weak self] in
+                guard let strongSelf = self else { return }
             
-            strongSelf.nextGoTime()
-        })
+                let go = strongSelf.viewModel.nextGoTime()
+                strongSelf.activeView.configure(go)
+            })
             .disposed(by: disposeBag)
         
-        goTimeGroupCollectionObs = goTimeGroup.valueChangedObs.map { [$0] }
-        let dataSource = RxTableViewSectionedAnimatedDataSource<GoTimeGroup>(configureCell:
+        stopButtonTappedObs = stopButton.rx.tap.asObservable()
+        stopButtonTappedObs
+            .subscribe(onNext: { [weak self] in
+                guard let strongSelf = self else { return }
+                
+                strongSelf.viewModel.stop()
+            })
+            .disposed(by: disposeBag)
+        
+        goTimeGroupCollectionObs = viewModel.goTimeSectionObs
+        let dataSource = RxTableViewSectionedAnimatedDataSource<GoTimeSection>(configureCell:
         { [weak self] _, tableView, _, item in
             guard let strongSelf = self else { return UITableViewCell() }
             return strongSelf.buildCell(tableView: tableView, row: item)
@@ -64,22 +75,18 @@ class FirstViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    private func buildCell(tableView: UITableView, row: GoTime) -> UITableViewCell {
+    private func buildCell(tableView: UITableView, row: GoTimeRow) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "goTimeCell") as! GoTimesTableViewCell
-        cell.configure(row)
+        cell.configure(row.value)
         return cell
     }
+}
+
+extension FirstViewController: UITableViewDelegate {
     
-    private func nextGoTime() {
-        let now = Date.now
-        let nextType = typeConfig.nextType(goTimeGroup.current()?.type)
-        
-        let goTime = GoTime(start: now, type: nextType)
-        goTimeGroup.add(goTime)
+    func tableView(_: UITableView, heightForRowAt: IndexPath) -> CGFloat {
+        return FirstViewController.cellHeight
     }
     
-    private func stop() {
-        goTimeGroup.stop()
-    }
 }
 

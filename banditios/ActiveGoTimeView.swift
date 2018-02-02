@@ -1,8 +1,8 @@
 //
-//  GoTimesTableViewCell.swift
+//  ActiveGoTimeView.swift
 //  banditios
 //
-//  Created by Graham Vaughn on 1/15/18.
+//  Created by Graham Vaughn on 1/28/18.
 //  Copyright © 2018 Graham Vaughn. All rights reserved.
 //
 
@@ -11,11 +11,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class GoTimesTableViewCell: UITableViewCell {
+class ActiveGoTimeView: UIView {
     
     @IBOutlet private var typeLabel: UILabel!
     @IBOutlet private var timeLabel: UILabel!
     @IBOutlet private var durationLabel: UILabel!
+    @IBOutlet private var inactiveView: UIView!
     
     private var goTime: GoTime?
     private var elapsedTimeDisplay: ElapsedTimeList?
@@ -26,22 +27,9 @@ class GoTimesTableViewCell: UITableViewCell {
     func configure(_ goTime: GoTime) {
         disposeBag.insert(elapsedTimeDisposable)
         
+        let didStart = startActivityTransition()
         typeLabel.text = "\(goTime.type.name)"
         timeLabel.text = "\(goTime.start.asDetailedTimeString())"
-        
-        if let endTime = goTime.end {
-            durationLabel.text = "\(endTime.asDetailedTimeString())"
-        } else {
-            observeEnd(goTime)
-        }
-        
-        
-        
-        
-        self.goTime = goTime
-    }
-    
-    private func observeEnd(_ goTime: GoTime) {
         let elapsedTimeDisplay = ElapsedTimeList(startingAt: Date.now - goTime.start)
         let elapsedTimeObs = elapsedTimeDisplay.go()
         elapsedTimeDisposable.disposable = elapsedTimeObs.bind(to: durationLabel.rx.text)
@@ -51,23 +39,37 @@ class GoTimesTableViewCell: UITableViewCell {
         endedObs
             .subscribe(onNext: { [weak self] ended in
                 guard let strongSelf = self else { return }
-                
-                let final = strongSelf.elapsedTimeDisplay?.stop()
-                strongSelf.durationLabel.text = final
-                strongSelf.durationLabel.textColor = UIColor.red
-                strongSelf.backgroundColor = UIColor.clear
-                strongSelf.elapsedTimeDisposable.dispose()
+                strongSelf.ended()
             })
             .disposed(by: disposeBag)
+        
         self.elapsedTimeDisplay = elapsedTimeDisplay
         self.elapsedTimeObs = elapsedTimeObs
         self.endedObs = endedObs
+        self.goTime = goTime
+        endActivityTransition(didStart: didStart)
+    }
+    
+    private func startActivityTransition() -> Bool {
+        guard inactiveView.alpha == 1.0 else { return false }
+        
+        UIView.animate(withDuration: 0.5) {
+            self.inactiveView.alpha = 1.0
+        }
+        return true
+    }
+    
+    private func endActivityTransition(didStart: Bool) {
+        if inactiveView.alpha != 1.0 || didStart {
+            UIView.animate(withDuration: 0.5) {
+                self.inactiveView.alpha = 0.0
+            }
+        }
     }
     
     private func ended() {
         let final = elapsedTimeDisplay?.stop()
         durationLabel.text = final ?? "shit"
-        durationLabel.textColor = UIColor.red
         elapsedTimeDisposable.dispose()
         elapsedTimeDisposable = SerialDisposable()
     }

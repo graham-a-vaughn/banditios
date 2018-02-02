@@ -9,38 +9,30 @@
 import Foundation
 import RxSwift
 import RxCocoa
-//import UIKit
-import RxDataSources
 
-class GoTimeGroup: AnimatableSectionModelType {
-    typealias Identity = Int
+class GoTimeGroup {
     private let goTimes = Chain<GoTime>()
-    private let publisher = PublishRelay<GoTimeGroup>()
+    private let publisher = ReplaySubject<GoTimeGroup>.createUnbounded()
+    var valueChangedObs: Observable<GoTimeGroup> {
+        return publisher.asObserver()
+    }
     
     var items: [GoTime] {
         return goTimes.list()
     }
     
-    var identity : Identity {
-        return 0
+    var isEmpty: Bool {
+       return goTimes.head == nil
     }
     
-    var valueChangedObs: Observable<GoTimeGroup> {
-        return publisher.asObservable()
-    }
-    
-    convenience init(goTimes: [GoTime]?) {
-        let values = goTimes ?? []
-        self.init(original: self, items: values)
-    }
-    
-    required init(original: GoTimeGroup, items: [GoTime]) {
-        self.goTimes.setValues(items)
+    init(goTimes: [GoTime]?) {
+        self.goTimes.setValues(goTimes ?? [])
+        publisher.on(.next(self))
     }
     
     func add(_ goTime: GoTime) {
         goTimes.add(goTime)
-        publisher.accept(self)
+        publisher.on(.next(self))
     }
     
     func current() -> GoTime? {
