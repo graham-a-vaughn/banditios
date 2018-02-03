@@ -29,7 +29,7 @@ class ActiveGoTimeView: UIView {
         
         let didStart = startActivityTransition()
         typeLabel.text = "\(goTime.type.name)"
-        timeLabel.text = "\(goTime.start.asDetailedTimeString())"
+        timeLabel.text = "\(goTime.start.asTimeWithSecondsString())"
         let elapsedTimeDisplay = ElapsedTimeViewModel(startingAt: Date.now - goTime.start)
         let elapsedTimeObs = elapsedTimeDisplay.go()
         elapsedTimeDisposable.disposable = elapsedTimeObs.bind(to: durationLabel.rx.text)

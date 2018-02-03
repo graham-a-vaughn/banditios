@@ -27,10 +27,10 @@ class GoTimesTableViewCell: UITableViewCell {
         disposeBag.insert(elapsedTimeDisposable)
         
         typeLabel.text = "\(goTime.type.name)"
-        timeLabel.text = "\(goTime.start.asDetailedTimeString())"
+        timeLabel.text = "\(goTime.start.asTimeWithSecondsString())"
         
         if let endTime = goTime.end {
-            durationLabel.text = "\(endTime.asDetailedTimeString())"
+            durationLabel.text = "\(endTime.asTimeWithSecondsString())"
         } else {
             observeEnd(goTime)
         }

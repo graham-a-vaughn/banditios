@@ -10,6 +10,20 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+enum TimeUnit: TimeInterval {
+    case second = 1
+    case minute = 60
+    case hour = 3600
+    
+    var value: Int {
+        return self.rawValue.int
+    }
+    
+    static func list() -> [TimeUnit] {
+        return [.second, .minute, .hour]
+    }
+}
+
 struct ElapsedTimeUnit {
     let unit: TimeUnit
     var value: Int
