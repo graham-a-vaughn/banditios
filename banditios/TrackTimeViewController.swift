@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class FirstViewController: UIViewController {
+class TrackTimeViewController: UIViewController {
     static let cellHeight: CGFloat = 64.0
     
     @IBOutlet var activeView: ActiveGoTimeView!
@@ -82,10 +82,10 @@ class FirstViewController: UIViewController {
     }
 }
 
-extension FirstViewController: UITableViewDelegate {
+extension TrackTimeViewController: UITableViewDelegate {
     
     func tableView(_: UITableView, heightForRowAt: IndexPath) -> CGFloat {
-        return FirstViewController.cellHeight
+        return TrackTimeViewController.cellHeight
     }
     
 }
