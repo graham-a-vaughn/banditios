@@ -151,17 +151,10 @@
 				BF51158F202614980016589F /* ui */,
 				BFBD472D20144B2200C43D78 /* model */,
 				BFBD472A2013F08E00C43D78 /* utils */,
-				BFE0E978200FF7090049E939 /* viewmodel */,
 				BF009C71200D22690071A142 /* ext */,
 				BF45CD63200D12720061AEB0 /* AppDelegate.swift */,
-				BF45CD65200D12720061AEB0 /* TrackTimeViewController.swift */,
-				BF45CD67200D12720061AEB0 /* ViewHistoryViewController.swift */,
-				BF45CD69200D12720061AEB0 /* Main.storyboard */,
 				BF45CD6C200D12720061AEB0 /* Assets.xcassets */,
-				BF45CD6E200D12720061AEB0 /* LaunchScreen.storyboard */,
 				BF45CD71200D12720061AEB0 /* Info.plist */,
-				BF009C7A200D35550071A142 /* GoTimesTableViewCell.swift */,
-				BF95B0BB201E76F100151A82 /* ActiveGoTimeView.swift */,
 			);
 			path = banditios;
 			sourceTree = "<group>";
@@ -187,8 +180,23 @@
 		BF51158F202614980016589F /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				BFE0E978200FF7090049E939 /* viewmodel */,
+				BF511590202616400016589F /* view */,
+				BF45CD65200D12720061AEB0 /* TrackTimeViewController.swift */,
+				BF45CD67200D12720061AEB0 /* ViewHistoryViewController.swift */,
+				BF45CD69200D12720061AEB0 /* Main.storyboard */,
+				BF45CD6E200D12720061AEB0 /* LaunchScreen.storyboard */,
 			);
 			path = ui;
+			sourceTree = "<group>";
+		};
+		BF511590202616400016589F /* view */ = {
+			isa = PBXGroup;
+			children = (
+				BF009C7A200D35550071A142 /* GoTimesTableViewCell.swift */,
+				BF95B0BB201E76F100151A82 /* ActiveGoTimeView.swift */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		BFBD472A2013F08E00C43D78 /* utils */ = {
