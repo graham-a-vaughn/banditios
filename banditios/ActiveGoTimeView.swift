@@ -19,7 +19,7 @@ class ActiveGoTimeView: UIView {
     @IBOutlet private var inactiveView: UIView!
     
     private var goTime: GoTime?
-    private var elapsedTimeDisplay: ElapsedTimeList?
+    private var elapsedTimeDisplay: ElapsedTimeViewModel?
     private var elapsedTimeObs: Observable<String>?
     private var endedObs: Observable<Date>?
     private var elapsedTimeDisposable = SerialDisposable()
@@ -30,7 +30,7 @@ class ActiveGoTimeView: UIView {
         let didStart = startActivityTransition()
         typeLabel.text = "\(goTime.type.name)"
         timeLabel.text = "\(goTime.start.asDetailedTimeString())"
-        let elapsedTimeDisplay = ElapsedTimeList(startingAt: Date.now - goTime.start)
+        let elapsedTimeDisplay = ElapsedTimeViewModel(startingAt: Date.now - goTime.start)
         let elapsedTimeObs = elapsedTimeDisplay.go()
         elapsedTimeDisposable.disposable = elapsedTimeObs.bind(to: durationLabel.rx.text)
         

@@ -18,7 +18,7 @@ class GoTimesTableViewCell: UITableViewCell {
     @IBOutlet private var durationLabel: UILabel!
     
     private var goTime: GoTime?
-    private var elapsedTimeDisplay: ElapsedTimeList?
+    private var elapsedTimeDisplay: ElapsedTimeViewModel?
     private var elapsedTimeObs: Observable<String>?
     private var endedObs: Observable<Date>?
     private var elapsedTimeDisposable = SerialDisposable()
@@ -42,7 +42,7 @@ class GoTimesTableViewCell: UITableViewCell {
     }
     
     private func observeEnd(_ goTime: GoTime) {
-        let elapsedTimeDisplay = ElapsedTimeList(startingAt: Date.now - goTime.start)
+        let elapsedTimeDisplay = ElapsedTimeViewModel(startingAt: Date.now - goTime.start)
         let elapsedTimeObs = elapsedTimeDisplay.go()
         elapsedTimeDisposable.disposable = elapsedTimeObs.bind(to: durationLabel.rx.text)
         

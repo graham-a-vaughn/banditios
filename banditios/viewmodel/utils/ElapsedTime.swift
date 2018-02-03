@@ -1,8 +1,8 @@
 //
-//  TimeDisplay.swift
+//  ElapsedTime.swift
 //  banditios
 //
-//  Created by Graham Vaughn on 1/19/18.
+//  Created by Graham Vaughn on 2/3/18.
 //  Copyright © 2018 Graham Vaughn. All rights reserved.
 //
 
@@ -15,9 +15,9 @@ struct ElapsedTimeUnit {
     var value: Int
 }
 
-class ElapsedTimeNode {
+class ElapsedTime {
     var value: ElapsedTimeUnit
-    var next: ElapsedTimeNode?
+    var next: ElapsedTime?
     
     var displayZero: Bool {
         return next != nil
@@ -78,55 +78,5 @@ class ElapsedTimeNode {
     
     func display() -> String {
         return nextDisplay() + getDisplay()
-    }
-}
-
-class ElapsedTimeList {
-    let head: ElapsedTimeNode
-    private let timeDisplayRelay: BehaviorRelay<String> = BehaviorRelay(value: "")
-    private var durationTimer: Timer? = nil
-    private let displayObs: Observable<String>
-    
-    convenience init() {
-        self.init(toUnit: .hour)
-        
-    }
-    
-    required init(toUnit: TimeUnit) {
-        let units = TimeUnit.list()
-        head = ElapsedTimeNode(units.first) ?? ElapsedTimeNode(.second)
-        var current = head
-        for u in units.dropFirst() {
-            let node = ElapsedTimeNode(u)
-            current.next = node
-            current = node
-        }
-        displayObs = timeDisplayRelay.asObservable()
-    }
-    
-    convenience init(startingAt: TimeInterval) {
-        self.init()
-        head.advanceBy(unit: .second, amount: startingAt.int)
-        startTimer()
-    }
-    
-    func go() -> Observable<String> {
-        startTimer()
-        return displayObs
-    }
-    
-    func stop() -> String {
-        durationTimer?.invalidate()
-        return head.display()
-    }
-    
-    private func startTimer() {
-        guard self.durationTimer == nil else { return }
-        let durationTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-            guard let strongSelf = self else { return }
-            
-            strongSelf.timeDisplayRelay.accept(strongSelf.head.incrementDisplay())
-        }
-        self.durationTimer = durationTimer
     }
 }
