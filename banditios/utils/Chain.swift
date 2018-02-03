@@ -38,6 +38,11 @@ class Chain<E: ChainMutable> {
         head = node
     }
     
+    func added(_ value: E) -> Chain<E> {
+        add(value)
+        return self
+    }
+    
     func setValues(_ values: [E]) {
         for value in values {
             add(value)

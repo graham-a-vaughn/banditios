@@ -40,6 +40,10 @@ enum TimeUnit: TimeInterval {
     var value: Int {
         return self.rawValue.int
     }
+    
+    static func list() -> [TimeUnit] {
+        return [.second, .minute, .hour]
+    }
 }
 
 extension TimeInterval {
@@ -138,6 +142,7 @@ extension Date {
         return "\(startTime) - \(endTime)"
     }
     
+    /**
     static func asTimeIntervalString(_ interval: TimeInterval) -> String {
         var hours = 0
         var minutes = 0
@@ -164,7 +169,7 @@ extension Date {
         let elapsed: TimeInterval = offset - self
         return Date.asTimeIntervalString(elapsed)
     }
-    
+    **/
     /// returns true if the Date is in the past
     var isInPast : Bool {
         return self.timeIntervalSinceNow < 0

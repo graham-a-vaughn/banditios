@@ -27,6 +27,10 @@ class ElapsedTimeNode {
         self.init(timeUnit, value: 0)
     }
     
+    convenience init?(_ timeUnit: TimeUnit?) {
+        self.init(timeUnit ?? .second, value: 0)
+    }
+    
     required init(_ timeUnit: TimeUnit, value: Int) {
         self.value = ElapsedTimeUnit(unit: timeUnit, value: value)
     }
@@ -78,16 +82,25 @@ class ElapsedTimeNode {
 }
 
 class ElapsedTimeList {
-    let head = ElapsedTimeNode(.second)
+    let head: ElapsedTimeNode
     private let timeDisplayRelay: BehaviorRelay<String> = BehaviorRelay(value: "")
     private var durationTimer: Timer? = nil
     private let displayObs: Observable<String>
     
-    required init() {
-        let minutes = ElapsedTimeNode(.minute)
-        let hours = ElapsedTimeNode(.hour)
-        minutes.next = hours
-        head.next = minutes
+    convenience init() {
+        self.init(toUnit: .hour)
+        
+    }
+    
+    required init(toUnit: TimeUnit) {
+        let units = TimeUnit.list()
+        head = ElapsedTimeNode(units.first) ?? ElapsedTimeNode(.second)
+        var current = head
+        for u in units.dropFirst() {
+            let node = ElapsedTimeNode(u)
+            current.next = node
+            current = node
+        }
         displayObs = timeDisplayRelay.asObservable()
     }
     

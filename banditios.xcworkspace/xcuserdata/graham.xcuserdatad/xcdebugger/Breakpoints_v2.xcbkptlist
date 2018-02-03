@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "banditios/FirstViewController.swift"
-            timestampString = "539240336.225877"
+            timestampString = "539365537.449347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "69"
@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "banditios/viewmodel/GoTimeViewModel.swift"
-            timestampString = "539240336.226722"
+            timestampString = "539365537.4514821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "goTimeSectionObs"
-            landmarkType = "24">
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "GoTimeViewModel"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "banditios/FirstViewController.swift"
-            timestampString = "539240336.2270221"
+            timestampString = "539365537.45156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "banditios/FirstViewController.swift"
-            timestampString = "539240336.227512"
+            timestampString = "539365537.451764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
