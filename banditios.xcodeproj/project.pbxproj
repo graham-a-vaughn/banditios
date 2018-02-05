@@ -23,6 +23,10 @@
 		BF45CD7B200D12720061AEB0 /* banditiosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CD7A200D12720061AEB0 /* banditiosUITests.swift */; };
 		BF51158C202611610016589F /* ElapsedTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF51158B202611610016589F /* ElapsedTimeViewModel.swift */; };
 		BF51158E202611D70016589F /* ElapsedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF51158D202611D70016589F /* ElapsedTime.swift */; };
+		BF511592202617680016589F /* AsyncQueueItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF511591202617680016589F /* AsyncQueueItem.swift */; };
+		BF51159420261BCA0016589F /* ObservableType+Bandit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF51159320261BCA0016589F /* ObservableType+Bandit.swift */; };
+		BF8FBAA4202631AE00A43D91 /* AsyncQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FBAA3202631AE00A43D91 /* AsyncQueue.swift */; };
+		BF8FBAA62026CF8E00A43D91 /* ActivityTransitionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FBAA52026CF8E00A43D91 /* ActivityTransitionHelper.swift */; };
 		BF95B0BC201E76F100151A82 /* ActiveGoTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF95B0BB201E76F100151A82 /* ActiveGoTimeView.swift */; };
 		BFBD472C2013F0A700C43D78 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBD472B2013F0A700C43D78 /* Chain.swift */; };
 		BFBD472F2014EB1600C43D78 /* GoTimeGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBD472E2014EB1600C43D78 /* GoTimeGroup.swift */; };
@@ -63,6 +67,10 @@
 		BF45CD7C200D12720061AEB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF51158B202611610016589F /* ElapsedTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTimeViewModel.swift; sourceTree = "<group>"; };
 		BF51158D202611D70016589F /* ElapsedTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTime.swift; sourceTree = "<group>"; };
+		BF511591202617680016589F /* AsyncQueueItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncQueueItem.swift; sourceTree = "<group>"; };
+		BF51159320261BCA0016589F /* ObservableType+Bandit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Bandit.swift"; sourceTree = "<group>"; };
+		BF8FBAA3202631AE00A43D91 /* AsyncQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncQueue.swift; sourceTree = "<group>"; };
+		BF8FBAA52026CF8E00A43D91 /* ActivityTransitionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTransitionHelper.swift; sourceTree = "<group>"; };
 		BF95B0BB201E76F100151A82 /* ActiveGoTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGoTimeView.swift; sourceTree = "<group>"; };
 		BFBD472B2013F0A700C43D78 /* Chain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
 		BFBD472E2014EB1600C43D78 /* GoTimeGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTimeGroup.swift; sourceTree = "<group>"; };
@@ -121,6 +129,7 @@
 				BF009C72200D22C70071A142 /* UIView+Bandit.swift */,
 				BF009C76200D22F70071A142 /* Date+Bandit.swift */,
 				BF009C78200D236C0071A142 /* DateFormatter+Bandit.swift */,
+				BF51159320261BCA0016589F /* ObservableType+Bandit.swift */,
 			);
 			path = ext;
 			sourceTree = "<group>";
@@ -195,6 +204,7 @@
 			children = (
 				BF009C7A200D35550071A142 /* GoTimesTableViewCell.swift */,
 				BF95B0BB201E76F100151A82 /* ActiveGoTimeView.swift */,
+				BF8FBAA52026CF8E00A43D91 /* ActivityTransitionHelper.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -203,6 +213,8 @@
 			isa = PBXGroup;
 			children = (
 				BFBD472B2013F0A700C43D78 /* Chain.swift */,
+				BF511591202617680016589F /* AsyncQueueItem.swift */,
+				BF8FBAA3202631AE00A43D91 /* AsyncQueue.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -430,6 +442,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -437,6 +450,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -450,17 +464,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF8FBAA4202631AE00A43D91 /* AsyncQueue.swift in Sources */,
 				BFBD47312014EC2200C43D78 /* GoTimeConfig.swift in Sources */,
 				BF009C7B200D35550071A142 /* GoTimesTableViewCell.swift in Sources */,
 				BF009C74200D22C70071A142 /* UIView+Bandit.swift in Sources */,
 				BFBD472F2014EB1600C43D78 /* GoTimeGroup.swift in Sources */,
+				BF8FBAA62026CF8E00A43D91 /* ActivityTransitionHelper.swift in Sources */,
 				BF45CD68200D12720061AEB0 /* ViewHistoryViewController.swift in Sources */,
 				BFBD472C2013F0A700C43D78 /* Chain.swift in Sources */,
 				BF45CD64200D12720061AEB0 /* AppDelegate.swift in Sources */,
 				BF45CD66200D12720061AEB0 /* TrackTimeViewController.swift in Sources */,
 				BF009C75200D22C70071A142 /* NSObject+Bandit.swift in Sources */,
 				BF009C79200D236C0071A142 /* DateFormatter+Bandit.swift in Sources */,
+				BF51159420261BCA0016589F /* ObservableType+Bandit.swift in Sources */,
 				BF009C77200D22F70071A142 /* Date+Bandit.swift in Sources */,
+				BF511592202617680016589F /* AsyncQueueItem.swift in Sources */,
 				BF51158E202611D70016589F /* ElapsedTime.swift in Sources */,
 				BF95B0BC201E76F100151A82 /* ActiveGoTimeView.swift in Sources */,
 				BFE0E97A200FF74A0049E939 /* GoTime.swift in Sources */,

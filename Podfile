@@ -8,6 +8,7 @@ target 'banditios' do
     pod 'RxSwift',    '4.1.1'
     pod 'RxCocoa',    '4.1.1'
     pod 'RxDataSources', '~> 3.0.1'
+    pod "RxSwiftExt"
 
   target 'banditiosUITests' do
     inherit! :search_paths

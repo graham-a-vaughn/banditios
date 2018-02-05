@@ -35,6 +35,11 @@ class TrackTimeViewController: UIViewController {
         configure()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        activeView.ready()
+    }
+    
     private func configure() {
         goTimesTable.delegate = self
         configureObservables()
@@ -59,6 +64,7 @@ class TrackTimeViewController: UIViewController {
                 guard let strongSelf = self else { return }
                 
                 strongSelf.viewModel.stop()
+                strongSelf.activeView.ready()
             })
             .disposed(by: disposeBag)
         

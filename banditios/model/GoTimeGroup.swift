@@ -41,5 +41,6 @@ class GoTimeGroup {
     
     func stop() {
         goTimes.end()
+        publisher.on(.next(self))
     }
 }

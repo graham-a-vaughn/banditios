@@ -49,7 +49,8 @@ struct GoTimeSection: AnimatableSectionModelType {
     
     // Internal for mapping model to displayable model elements
     private func goTimes() -> [GoTime] {
-        return Array<GoTime>(goTimeGroup.items.dropLast())
+        let itemSrc = goTimeGroup.current()?.end == nil ? Array<GoTime>(goTimeGroup.items.dropLast()) : Array<GoTime>(goTimeGroup.items)
+        return itemSrc
     }
 }
 
