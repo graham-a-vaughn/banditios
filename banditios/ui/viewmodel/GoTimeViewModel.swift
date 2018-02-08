@@ -79,6 +79,7 @@ class GoTimeViewModel {
     private let typeConfig: GoTimeTypeConfig
     private let publisher = PublishRelay<GoTimeGroup>()
     private let disposeBag = DisposeBag()
+    private let persistenceManager = PersistenceManager()
     
     private let chill = GoTimeType(name: "Not Work", primary: false)
     private let work = GoTimeType(name: "Work", primary: true)
@@ -89,6 +90,18 @@ class GoTimeViewModel {
             guard let strongSelf = self else { return Disposables.create() }
             
             return strongSelf.goTimeGroup.valueChangedObs.subscribe(onNext: { group in
+                do {
+                    try strongSelf.persistenceManager.saveGoTimes(group)
+                } catch PersistenceError.castFailed(let message) {
+                    print("\(message)")
+                } catch PersistenceError.saveFailed(let message) {
+                    print("\(message)")
+                } catch PersistenceError.loadFailed(let message) {
+                    print("\(message)")
+                } catch {
+                    print("\(error)")
+                }
+                
                 observer.on(.next([GoTimeSection(goTimeGroup: group)]))
             })
         }
@@ -112,6 +125,7 @@ class GoTimeViewModel {
     /// Stops execution of the current go time
     func stop() {
         goTimeGroup.stop()
+        persistenceManager.loadGoTimes()
     }
     
     private func configureTypes() {

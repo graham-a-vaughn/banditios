@@ -10,7 +10,23 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class GoTimeGroup {
+struct GoTimeGroupProps {
+    static let goTimes = "GoTimes"
+}
+class GoTimeGroup: NSObject, NSCoding {
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(goTimes.list(), forKey: GoTimeGroupProps.goTimes)
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        guard let decodeTimes = aDecoder.decodeObject(forKey: GoTimeGroupProps.goTimes) as? [GoTime] else {
+            print("Unable to decode gotimegroup")
+            return nil
+        }
+        self.init(goTimes: decodeTimes)
+    }
+    
+    let id: Int
     private let goTimes = Chain<GoTime>()
     private let publisher = ReplaySubject<GoTimeGroup>.createUnbounded()
     var valueChangedObs: Observable<GoTimeGroup> {
@@ -25,7 +41,9 @@ class GoTimeGroup {
        return goTimes.head == nil
     }
     
-    init(goTimes: [GoTime]?) {
+    required init(goTimes: [GoTime]?) {
+        self.id = Int(Date.now.timeIntervalSince1970)
+        super.init()
         self.goTimes.setValues(goTimes ?? [])
         publisher.on(.next(self))
     }

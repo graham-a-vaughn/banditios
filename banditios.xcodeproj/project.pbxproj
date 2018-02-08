@@ -25,6 +25,8 @@
 		BF51158E202611D70016589F /* ElapsedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF51158D202611D70016589F /* ElapsedTime.swift */; };
 		BF511592202617680016589F /* AsyncQueueItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF511591202617680016589F /* AsyncQueueItem.swift */; };
 		BF51159420261BCA0016589F /* ObservableType+Bandit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF51159320261BCA0016589F /* ObservableType+Bandit.swift */; };
+		BF6BF413202816CA006E0086 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6BF412202816CA006E0086 /* PersistenceManager.swift */; };
+		BF6BF41520281B59006E0086 /* JSONConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6BF41420281B59006E0086 /* JSONConvertable.swift */; };
 		BF8FBAA4202631AE00A43D91 /* AsyncQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FBAA3202631AE00A43D91 /* AsyncQueue.swift */; };
 		BF8FBAA62026CF8E00A43D91 /* ActivityTransitionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FBAA52026CF8E00A43D91 /* ActivityTransitionHelper.swift */; };
 		BF95B0BC201E76F100151A82 /* ActiveGoTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF95B0BB201E76F100151A82 /* ActiveGoTimeView.swift */; };
@@ -69,6 +71,8 @@
 		BF51158D202611D70016589F /* ElapsedTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTime.swift; sourceTree = "<group>"; };
 		BF511591202617680016589F /* AsyncQueueItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncQueueItem.swift; sourceTree = "<group>"; };
 		BF51159320261BCA0016589F /* ObservableType+Bandit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Bandit.swift"; sourceTree = "<group>"; };
+		BF6BF412202816CA006E0086 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		BF6BF41420281B59006E0086 /* JSONConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConvertable.swift; sourceTree = "<group>"; };
 		BF8FBAA3202631AE00A43D91 /* AsyncQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncQueue.swift; sourceTree = "<group>"; };
 		BF8FBAA52026CF8E00A43D91 /* ActivityTransitionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTransitionHelper.swift; sourceTree = "<group>"; };
 		BF95B0BB201E76F100151A82 /* ActiveGoTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGoTimeView.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 		BF45CD62200D12720061AEB0 /* banditios */ = {
 			isa = PBXGroup;
 			children = (
+				BF6BF411202816A6006E0086 /* data */,
 				BF51158F202614980016589F /* ui */,
 				BFBD472D20144B2200C43D78 /* model */,
 				BFBD472A2013F08E00C43D78 /* utils */,
@@ -207,6 +212,15 @@
 				BF8FBAA52026CF8E00A43D91 /* ActivityTransitionHelper.swift */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		BF6BF411202816A6006E0086 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				BF6BF412202816CA006E0086 /* PersistenceManager.swift */,
+				BF6BF41420281B59006E0086 /* JSONConvertable.swift */,
+			);
+			path = data;
 			sourceTree = "<group>";
 		};
 		BFBD472A2013F08E00C43D78 /* utils */ = {
@@ -443,6 +457,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -451,6 +466,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -465,6 +481,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF8FBAA4202631AE00A43D91 /* AsyncQueue.swift in Sources */,
+				BF6BF41520281B59006E0086 /* JSONConvertable.swift in Sources */,
 				BFBD47312014EC2200C43D78 /* GoTimeConfig.swift in Sources */,
 				BF009C7B200D35550071A142 /* GoTimesTableViewCell.swift in Sources */,
 				BF009C74200D22C70071A142 /* UIView+Bandit.swift in Sources */,
@@ -479,6 +496,7 @@
 				BF51159420261BCA0016589F /* ObservableType+Bandit.swift in Sources */,
 				BF009C77200D22F70071A142 /* Date+Bandit.swift in Sources */,
 				BF511592202617680016589F /* AsyncQueueItem.swift in Sources */,
+				BF6BF413202816CA006E0086 /* PersistenceManager.swift in Sources */,
 				BF51158E202611D70016589F /* ElapsedTime.swift in Sources */,
 				BF95B0BC201E76F100151A82 /* ActiveGoTimeView.swift in Sources */,
 				BFE0E97A200FF74A0049E939 /* GoTime.swift in Sources */,
