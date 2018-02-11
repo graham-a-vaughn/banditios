@@ -32,6 +32,8 @@ private let dayOfWeekFormater = DateFormatter(format: "EEEE")
 
 private let amPmFormatter = DateFormatter(format: "a")
 
+private let shortDateFormatter = DateFormatter(format: "MM/dd/yyyy")
+
 extension TimeInterval {
     var int: Int {
         return Int(self)
@@ -46,5 +48,15 @@ extension Date {
         return detailTimeFormatter.string(from: self)
     }
  
+    func asTimeOfDayString() -> String {
+        return timeFormatter.string(from: self)
+    }
+    
+    func asDayAndDateString() -> String {
+        let day = dayOfWeekFormater.string(from: self)
+        let date = shortDateFormatter.string(from: self)
+        print("day & date: \(day) \(date)")
+        return "\(day) \(date)"
+    }
 }
 

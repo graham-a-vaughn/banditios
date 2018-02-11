@@ -24,7 +24,7 @@ class GoTimesTableViewCell: UITableViewCell {
     private var elapsedTimeDisposable = SerialDisposable()
     
     func configure(_ goTime: GoTime) {
-        disposeBag.insert(elapsedTimeDisposable)
+        reuseDisposeBag.insert(elapsedTimeDisposable)
         
         typeLabel.text = "\(goTime.type.name)"
         timeLabel.text = "\(goTime.start.asTimeWithSecondsString())"
@@ -58,7 +58,7 @@ class GoTimesTableViewCell: UITableViewCell {
                 strongSelf.backgroundColor = UIColor.clear
                 strongSelf.elapsedTimeDisposable.dispose()
             })
-            .disposed(by: disposeBag)
+            .disposed(by: reuseDisposeBag)
         self.elapsedTimeDisplay = elapsedTimeDisplay
         self.elapsedTimeObs = elapsedTimeObs
         self.endedObs = endedObs

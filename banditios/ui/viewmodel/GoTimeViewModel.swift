@@ -80,6 +80,7 @@ class GoTimeViewModel {
     private let publisher = PublishRelay<GoTimeGroup>()
     private let disposeBag = DisposeBag()
     private let persistenceManager = PersistenceManager()
+    private let errorHelper = ErrorHelper()
     
     private let chill = GoTimeType(name: "Not Work", primary: false)
     private let work = GoTimeType(name: "Work", primary: true)
@@ -90,18 +91,6 @@ class GoTimeViewModel {
             guard let strongSelf = self else { return Disposables.create() }
             
             return strongSelf.goTimeGroup.valueChangedObs.subscribe(onNext: { group in
-                do {
-                    try strongSelf.persistenceManager.saveGoTimes(group)
-                } catch PersistenceError.castFailed(let message) {
-                    print("\(message)")
-                } catch PersistenceError.saveFailed(let message) {
-                    print("\(message)")
-                } catch PersistenceError.loadFailed(let message) {
-                    print("\(message)")
-                } catch {
-                    print("\(error)")
-                }
-                
                 observer.on(.next([GoTimeSection(goTimeGroup: group)]))
             })
         }
@@ -119,13 +108,26 @@ class GoTimeViewModel {
         
         let goTime = GoTime(start: now, type: nextType)
         goTimeGroup.add(goTime)
+        do {
+            try persistenceManager.autoSaveGoTimes(goTimeGroup)
+        } catch {
+            errorHelper.handleError(error)
+        }
         return goTime
     }
     
     /// Stops execution of the current go time
     func stop() {
+        print("BEFORE STOP: ")
+        print(goTimeGroup.desc())
         goTimeGroup.stop()
-        persistenceManager.loadGoTimes()
+        print("AFTER STOP: ")
+        print(goTimeGroup.desc())
+        do {
+            try persistenceManager.saveGoTimes(goTimeGroup)
+        } catch {
+            errorHelper.handleError(error)
+        }
     }
     
     private func configureTypes() {

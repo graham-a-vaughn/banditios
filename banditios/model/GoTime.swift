@@ -39,8 +39,9 @@ class GoTime: NSObject, NSCoding {
             print("Unable to decode GoTime type name")
             return nil
         }
+        let decodeEnd = aDecoder.decodeObject(forKey: GoTimeProps.end) as? Date
         let toType = GoTimeType(name: decodeType, primary: false)
-        self.init(start: decodeStart, type: toType)
+        self.init(start: decodeStart, end: decodeEnd, type: toType)
     }
     
     static func ==(lhs: GoTime, rhs: GoTime) -> Bool {
@@ -62,8 +63,13 @@ class GoTime: NSObject, NSCoding {
         return _endRelay.asObservable()
     }
     
-    init(start: Date, type: GoTimeType) {
+    convenience init(start: Date, type: GoTimeType) {
+        self.init(start: start, end: nil, type: type)
+    }
+    
+    required init(start: Date, end: Date?, type: GoTimeType) {
         self.start = start
+        self._end = end
         self.type = type
     }
     
@@ -71,6 +77,13 @@ class GoTime: NSObject, NSCoding {
         guard _end == nil else { return }
         _endRelay.accept(endTime)
         _end = endTime
+    }
+    
+    func desc() -> String {
+        var result = ""
+        let endResult = end?.asTimeWithSecondsString() ?? "nil"
+        result += "Go Time: \n\tstart: \(start.asTimeWithSecondsString())\n\tend?: \(endResult)\n\ttype: \(type.name)"
+        return result
     }
 }
 
@@ -94,5 +107,17 @@ extension GoTime: ChainMutable {
     
     func terminateSelf() {
         self.ended(Date.now)
+    }
+}
+
+extension GoTime: EquatableByValue {
+    static func ===(lhs: GoTime, rhs: GoTime) -> Bool {
+        if lhs.start != rhs.start {
+            return false
+        }
+        if (lhs.end == nil) == (rhs.end == nil) {
+            return lhs.end == rhs.end
+        }
+        return false
     }
 }

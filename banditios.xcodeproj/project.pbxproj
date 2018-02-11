@@ -14,6 +14,8 @@
 		BF009C77200D22F70071A142 /* Date+Bandit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF009C76200D22F70071A142 /* Date+Bandit.swift */; };
 		BF009C79200D236C0071A142 /* DateFormatter+Bandit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF009C78200D236C0071A142 /* DateFormatter+Bandit.swift */; };
 		BF009C7B200D35550071A142 /* GoTimesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF009C7A200D35550071A142 /* GoTimesTableViewCell.swift */; };
+		BF41E459202E2DD700163EB6 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF41E458202E2DD700163EB6 /* HistoryTableViewCell.swift */; };
+		BF41E45B202E3C3B00163EB6 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF41E45A202E3C3B00163EB6 /* HistoryViewModel.swift */; };
 		BF45CD64200D12720061AEB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CD63200D12720061AEB0 /* AppDelegate.swift */; };
 		BF45CD66200D12720061AEB0 /* TrackTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CD65200D12720061AEB0 /* TrackTimeViewController.swift */; };
 		BF45CD68200D12720061AEB0 /* ViewHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CD67200D12720061AEB0 /* ViewHistoryViewController.swift */; };
@@ -34,6 +36,12 @@
 		BFBD472F2014EB1600C43D78 /* GoTimeGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBD472E2014EB1600C43D78 /* GoTimeGroup.swift */; };
 		BFBD47312014EC2200C43D78 /* GoTimeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBD47302014EC2200C43D78 /* GoTimeConfig.swift */; };
 		BFBD473320151B8D00C43D78 /* GoTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBD473220151B8D00C43D78 /* GoTimeViewModel.swift */; };
+		BFD0DDE7202EB93D002614C4 /* ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDE6202EB93D002614C4 /* ErrorHelper.swift */; };
+		BFD0DDE9202F55C7002614C4 /* HistoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDE8202F55C7002614C4 /* HistoryCellViewModel.swift */; };
+		BFD0DDEB202FB323002614C4 /* UITableViewCell+Bandit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDEA202FB323002614C4 /* UITableViewCell+Bandit.swift */; };
+		BFD0DDED20300B15002614C4 /* GoTimePoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDEC20300B15002614C4 /* GoTimePoller.swift */; };
+		BFD0DDEF2030C057002614C4 /* EquatableByValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDEE2030C057002614C4 /* EquatableByValue.swift */; };
+		BFD0DDF12030CA65002614C4 /* Array+Bandit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDF02030CA65002614C4 /* Array+Bandit.swift */; };
 		BFE0E97A200FF74A0049E939 /* GoTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE0E979200FF74A0049E939 /* GoTime.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +64,8 @@
 		BF009C76200D22F70071A142 /* Date+Bandit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Bandit.swift"; sourceTree = "<group>"; };
 		BF009C78200D236C0071A142 /* DateFormatter+Bandit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Bandit.swift"; sourceTree = "<group>"; };
 		BF009C7A200D35550071A142 /* GoTimesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTimesTableViewCell.swift; sourceTree = "<group>"; };
+		BF41E458202E2DD700163EB6 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		BF41E45A202E3C3B00163EB6 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		BF45CD60200D12720061AEB0 /* banditios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = banditios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF45CD63200D12720061AEB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF45CD65200D12720061AEB0 /* TrackTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTimeViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +90,12 @@
 		BFBD472E2014EB1600C43D78 /* GoTimeGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTimeGroup.swift; sourceTree = "<group>"; };
 		BFBD47302014EC2200C43D78 /* GoTimeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTimeConfig.swift; sourceTree = "<group>"; };
 		BFBD473220151B8D00C43D78 /* GoTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTimeViewModel.swift; sourceTree = "<group>"; };
+		BFD0DDE6202EB93D002614C4 /* ErrorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHelper.swift; sourceTree = "<group>"; };
+		BFD0DDE8202F55C7002614C4 /* HistoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCellViewModel.swift; sourceTree = "<group>"; };
+		BFD0DDEA202FB323002614C4 /* UITableViewCell+Bandit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Bandit.swift"; sourceTree = "<group>"; };
+		BFD0DDEC20300B15002614C4 /* GoTimePoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTimePoller.swift; sourceTree = "<group>"; };
+		BFD0DDEE2030C057002614C4 /* EquatableByValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquatableByValue.swift; sourceTree = "<group>"; };
+		BFD0DDF02030CA65002614C4 /* Array+Bandit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Bandit.swift"; sourceTree = "<group>"; };
 		BFE0E979200FF74A0049E939 /* GoTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTime.swift; sourceTree = "<group>"; };
 		CF4784F3540CF31FDEA2166C /* Pods-banditios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banditios.release.xcconfig"; path = "Pods/Target Support Files/Pods-banditios/Pods-banditios.release.xcconfig"; sourceTree = "<group>"; };
 		D9A5BFF8CA0E40C2FCFAD777 /* Pods-banditiosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banditiosUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-banditiosUITests/Pods-banditiosUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -134,6 +150,8 @@
 				BF009C76200D22F70071A142 /* Date+Bandit.swift */,
 				BF009C78200D236C0071A142 /* DateFormatter+Bandit.swift */,
 				BF51159320261BCA0016589F /* ObservableType+Bandit.swift */,
+				BFD0DDEA202FB323002614C4 /* UITableViewCell+Bandit.swift */,
+				BFD0DDF02030CA65002614C4 /* Array+Bandit.swift */,
 			);
 			path = ext;
 			sourceTree = "<group>";
@@ -210,6 +228,7 @@
 				BF009C7A200D35550071A142 /* GoTimesTableViewCell.swift */,
 				BF95B0BB201E76F100151A82 /* ActiveGoTimeView.swift */,
 				BF8FBAA52026CF8E00A43D91 /* ActivityTransitionHelper.swift */,
+				BF41E458202E2DD700163EB6 /* HistoryTableViewCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -219,6 +238,7 @@
 			children = (
 				BF6BF412202816CA006E0086 /* PersistenceManager.swift */,
 				BF6BF41420281B59006E0086 /* JSONConvertable.swift */,
+				BFD0DDEC20300B15002614C4 /* GoTimePoller.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -229,6 +249,8 @@
 				BFBD472B2013F0A700C43D78 /* Chain.swift */,
 				BF511591202617680016589F /* AsyncQueueItem.swift */,
 				BF8FBAA3202631AE00A43D91 /* AsyncQueue.swift */,
+				BFD0DDE6202EB93D002614C4 /* ErrorHelper.swift */,
+				BFD0DDEE2030C057002614C4 /* EquatableByValue.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -248,6 +270,8 @@
 			children = (
 				BF51158A2026113D0016589F /* utils */,
 				BFBD473220151B8D00C43D78 /* GoTimeViewModel.swift */,
+				BF41E45A202E3C3B00163EB6 /* HistoryViewModel.swift */,
+				BFD0DDE8202F55C7002614C4 /* HistoryCellViewModel.swift */,
 			);
 			path = viewmodel;
 			sourceTree = "<group>";
@@ -487,9 +511,15 @@
 				BF009C74200D22C70071A142 /* UIView+Bandit.swift in Sources */,
 				BFBD472F2014EB1600C43D78 /* GoTimeGroup.swift in Sources */,
 				BF8FBAA62026CF8E00A43D91 /* ActivityTransitionHelper.swift in Sources */,
+				BFD0DDE9202F55C7002614C4 /* HistoryCellViewModel.swift in Sources */,
+				BFD0DDED20300B15002614C4 /* GoTimePoller.swift in Sources */,
+				BF41E45B202E3C3B00163EB6 /* HistoryViewModel.swift in Sources */,
 				BF45CD68200D12720061AEB0 /* ViewHistoryViewController.swift in Sources */,
+				BF41E459202E2DD700163EB6 /* HistoryTableViewCell.swift in Sources */,
 				BFBD472C2013F0A700C43D78 /* Chain.swift in Sources */,
+				BFD0DDEF2030C057002614C4 /* EquatableByValue.swift in Sources */,
 				BF45CD64200D12720061AEB0 /* AppDelegate.swift in Sources */,
+				BFD0DDE7202EB93D002614C4 /* ErrorHelper.swift in Sources */,
 				BF45CD66200D12720061AEB0 /* TrackTimeViewController.swift in Sources */,
 				BF009C75200D22C70071A142 /* NSObject+Bandit.swift in Sources */,
 				BF009C79200D236C0071A142 /* DateFormatter+Bandit.swift in Sources */,
@@ -499,7 +529,9 @@
 				BF6BF413202816CA006E0086 /* PersistenceManager.swift in Sources */,
 				BF51158E202611D70016589F /* ElapsedTime.swift in Sources */,
 				BF95B0BC201E76F100151A82 /* ActiveGoTimeView.swift in Sources */,
+				BFD0DDEB202FB323002614C4 /* UITableViewCell+Bandit.swift in Sources */,
 				BFE0E97A200FF74A0049E939 /* GoTime.swift in Sources */,
+				BFD0DDF12030CA65002614C4 /* Array+Bandit.swift in Sources */,
 				BF51158C202611610016589F /* ElapsedTimeViewModel.swift in Sources */,
 				BFBD473320151B8D00C43D78 /* GoTimeViewModel.swift in Sources */,
 			);
@@ -591,7 +623,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -642,7 +674,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

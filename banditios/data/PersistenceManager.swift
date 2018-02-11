@@ -7,7 +7,10 @@
 //
 
 import Foundation
-import SwiftyJSON
+import RxSwift
+import RxCocoa
+import RxSwiftExt
+
 class Props {
     static let persistDir = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let goTimeGroup = "GoTimeGroup"
@@ -26,48 +29,95 @@ enum PersistenceError: Error {
 }
 
 class PersistenceManager {
-    private var persistenceHistory: [String: Bool] = [:]
+    private let goTimesSubject = ReplaySubject<[GoTimeGroup]>.create(bufferSize: 1)
+    private let goTimesRelay = BehaviorRelay<Void>(value: ())
+    private let errorHandler = ErrorHelper()
+    private let disposeBag = DisposeBag()
     
-    func saveGoTimes(_ goTimeGroup: GoTimeGroup) throws {
-        try saveGoTimeGroupId(goTimeGroup.id)
-        
-        let saveDir = goTimeGroupPath(goTimeGroup.id)
-        if !NSKeyedArchiver.archiveRootObject(goTimeGroup, toFile: saveDir.path) {
-            throw PersistenceError.saveFailed(message: "Could not save go time groups")
+    init() {
+        goTimesRelay.asObservable().subscribeNext(weak: self) { strongSelf, _ in
+            do {
+                try strongSelf.goTimesSubject.onNext(strongSelf.loadGoTimeGroups())
+            } catch {
+                strongSelf.errorHandler.handleError(error)
+            }
+            
+        }.disposed(by: disposeBag)
+    }
+    
+    var goTimesObs: Observable<[GoTimeGroup]> {
+        return goTimesSubject.asObservable()
+            .distinctUntilChanged { lhs, rhs in
+                return lhs.equalByValue(rhs)
         }
     }
     
+    func terminateOpenGoTimes() {
+        do {
+            var open: [GoTimeGroup] = []
+            let goTimes = try loadGoTimeGroups()
+            for time in goTimes {
+                if time.endTime == nil {
+                    open.append(time)
+                }
+            }
+            
+            for time in open {
+                try saveGoTimes(time)
+            }
+        } catch {
+            print("Error encountered attempting to clean up open go times")
+            errorHandler.handleError(error)
+        }
+    }
+    
+    func autoSaveGoTimes(_ goTimeGroup: GoTimeGroup) throws {
+        guard !goTimeGroup.isEmpty else { return }
+        try persistGoTime(goTimeGroup)
+    }
+    
+    func saveGoTimes(_ goTimeGroup: GoTimeGroup) throws {
+        guard !goTimeGroup.isEmpty else { return }
+        
+        if goTimeGroup.items.last?.end == nil {
+            goTimeGroup.stop()
+        }
+        try persistGoTime(goTimeGroup)
+    }
+    
+    private func persistGoTime(_ goTimeGroup: GoTimeGroup) throws {
+        try saveGoTimeGroupId(goTimeGroup.id)
+        
+        goTimeGroup.lastModified = Date.now
+        let saveDir = goTimeGroupPath(goTimeGroup.id)
+        if !NSKeyedArchiver.archiveRootObject(goTimeGroup, toFile: saveDir.path) {
+            throw PersistenceError.saveFailed(message: "Could not save go time groups: \(saveDir.path)")
+        }
+        print("Saved go times to: \(saveDir.path)")
+        goTimesRelay.accept(())
+    }
+    
+    
+    
     func loadGoTimeGroups() throws -> [GoTimeGroup] {
-        let saveDir = Props.goTimeIdsUrl.path
-        let persistedIds = try loadGoTimeGroupIds(saveDir)
+        let persistedIds = try loadOrFailGoTimeIds()
         var loadedGroups: [GoTimeGroup] = []
+        var misses: [Int] = []
         for id in persistedIds {
             let saveDir = goTimeGroupPath(id)
-            let goTimeGroup = try loadGoTimeGroup(saveDir.path)
-            loadedGroups.append(goTimeGroup)
+            do {
+                let goTimeGroup = try loadGoTimeGroup(saveDir.path)
+                loadedGroups.append(goTimeGroup)
+            } catch {
+                misses.append(id)
+            }
         }
+        print("Loaded all go time ids, count: \(loadedGroups.count)")
+        try pruneGoTimeIds(misses)
         return loadedGroups
     }
     
-    private func saveGoTimeGroupId(_ id: Int) throws {
-        let saveDir = Props.goTimeIdsUrl.path
-        let currentIds = try loadGoTimeGroupIds(saveDir)
-        if !currentIds.contains(id) {
-            var idSet = Set<Int>(currentIds)
-            idSet.insert(id)
-            let updatedIds = Array<Int>(idSet)
-            if !NSKeyedArchiver.archiveRootObject(updatedIds, toFile: saveDir) {
-                throw PersistenceError.saveFailed(message: "Could not save go time group ids")
-            }
-        }
-    }
     
-    private func loadGoTimeGroupIds(_ dir: String) throws -> [Int] {
-        guard let currentIds = persistedGoTimeIds(dir) as? [Int] else {
-            throw PersistenceError.castFailed(message: "Could not cast go time group ids to [Int]")
-        }
-        return currentIds
-    }
     
     private func loadGoTimeGroup(_ dir: String) throws -> GoTimeGroup {
         let goTimeGroup = NSKeyedUnarchiver.unarchiveObject(withFile: dir)
@@ -80,7 +130,15 @@ class PersistenceManager {
         throw PersistenceError.castFailed(message: "Could not cast go time group at \(dir)")
     }
     
-    private func persistedGoTimeIds(_ dir: String) -> Any? {
+    private func loadOrFailGoTimeIds() throws -> [Int] {
+        let dir = Props.goTimeIdsUrl.path
+        guard let currentIds = getOrCreateGoTimeIds(dir) as? [Int] else {
+            throw PersistenceError.castFailed(message: "Could not cast go time group ids to [Int]")
+        }
+        return currentIds
+    }
+    
+    private func getOrCreateGoTimeIds(_ dir: String) -> Any? {
         let currentIds = NSKeyedUnarchiver.unarchiveObject(withFile: dir)
         if currentIds == nil {
             print("No ids file found, creating one ...")
@@ -89,7 +147,34 @@ class PersistenceManager {
         return currentIds
     }
     
+    private func pruneGoTimeIds(_ toRemove: [Int]) throws {
+        guard !toRemove.isEmpty else { return }
+        
+        print("Pruning go time ids: \(toRemove)")
+        let currentIds = try loadOrFailGoTimeIds()
+        let prunedIds = currentIds.filter { !toRemove.contains($0)}
+        try saveGoTimeIds(prunedIds)
+    }
+    
+    private func saveGoTimeGroupId(_ id: Int) throws {
+        
+        let currentIds = try loadOrFailGoTimeIds()
+        if !currentIds.contains(id) {
+            var idSet = Set<Int>(currentIds)
+            idSet.insert(id)
+            let updatedIds = Array<Int>(idSet)
+            try saveGoTimeIds(updatedIds)
+        }
+    }
+    
+    private func saveGoTimeIds(_ ids: [Int]) throws {
+        let saveDir = Props.goTimeIdsUrl.path
+        if !NSKeyedArchiver.archiveRootObject(ids, toFile: saveDir) {
+            throw PersistenceError.saveFailed(message: "Could not save go time group ids")
+        }
+    }
+    
     private func goTimeGroupPath(_ id: Int) -> URL {
-        return Props.goTimeUrl.appendingPathComponent("\(id)")
+        return Props.persistDir.appendingPathComponent("\(Props.goTimeGroup)\(id)")
     }
 }
