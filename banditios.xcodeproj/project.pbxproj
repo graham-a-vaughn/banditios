@@ -25,11 +25,8 @@
 		BF45CD7B200D12720061AEB0 /* banditiosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CD7A200D12720061AEB0 /* banditiosUITests.swift */; };
 		BF51158C202611610016589F /* ElapsedTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF51158B202611610016589F /* ElapsedTimeViewModel.swift */; };
 		BF51158E202611D70016589F /* ElapsedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF51158D202611D70016589F /* ElapsedTime.swift */; };
-		BF511592202617680016589F /* AsyncQueueItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF511591202617680016589F /* AsyncQueueItem.swift */; };
 		BF51159420261BCA0016589F /* ObservableType+Bandit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF51159320261BCA0016589F /* ObservableType+Bandit.swift */; };
 		BF6BF413202816CA006E0086 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6BF412202816CA006E0086 /* PersistenceManager.swift */; };
-		BF6BF41520281B59006E0086 /* JSONConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6BF41420281B59006E0086 /* JSONConvertable.swift */; };
-		BF8FBAA4202631AE00A43D91 /* AsyncQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FBAA3202631AE00A43D91 /* AsyncQueue.swift */; };
 		BF8FBAA62026CF8E00A43D91 /* ActivityTransitionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FBAA52026CF8E00A43D91 /* ActivityTransitionHelper.swift */; };
 		BF95B0BC201E76F100151A82 /* ActiveGoTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF95B0BB201E76F100151A82 /* ActiveGoTimeView.swift */; };
 		BFBD472C2013F0A700C43D78 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBD472B2013F0A700C43D78 /* Chain.swift */; };
@@ -39,7 +36,6 @@
 		BFD0DDE7202EB93D002614C4 /* ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDE6202EB93D002614C4 /* ErrorHelper.swift */; };
 		BFD0DDE9202F55C7002614C4 /* HistoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDE8202F55C7002614C4 /* HistoryCellViewModel.swift */; };
 		BFD0DDEB202FB323002614C4 /* UITableViewCell+Bandit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDEA202FB323002614C4 /* UITableViewCell+Bandit.swift */; };
-		BFD0DDED20300B15002614C4 /* GoTimePoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDEC20300B15002614C4 /* GoTimePoller.swift */; };
 		BFD0DDEF2030C057002614C4 /* EquatableByValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDEE2030C057002614C4 /* EquatableByValue.swift */; };
 		BFD0DDF12030CA65002614C4 /* Array+Bandit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDF02030CA65002614C4 /* Array+Bandit.swift */; };
 		BFE0E97A200FF74A0049E939 /* GoTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE0E979200FF74A0049E939 /* GoTime.swift */; };
@@ -79,11 +75,8 @@
 		BF45CD7C200D12720061AEB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF51158B202611610016589F /* ElapsedTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTimeViewModel.swift; sourceTree = "<group>"; };
 		BF51158D202611D70016589F /* ElapsedTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTime.swift; sourceTree = "<group>"; };
-		BF511591202617680016589F /* AsyncQueueItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncQueueItem.swift; sourceTree = "<group>"; };
 		BF51159320261BCA0016589F /* ObservableType+Bandit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Bandit.swift"; sourceTree = "<group>"; };
 		BF6BF412202816CA006E0086 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
-		BF6BF41420281B59006E0086 /* JSONConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConvertable.swift; sourceTree = "<group>"; };
-		BF8FBAA3202631AE00A43D91 /* AsyncQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncQueue.swift; sourceTree = "<group>"; };
 		BF8FBAA52026CF8E00A43D91 /* ActivityTransitionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTransitionHelper.swift; sourceTree = "<group>"; };
 		BF95B0BB201E76F100151A82 /* ActiveGoTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGoTimeView.swift; sourceTree = "<group>"; };
 		BFBD472B2013F0A700C43D78 /* Chain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
@@ -93,7 +86,6 @@
 		BFD0DDE6202EB93D002614C4 /* ErrorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHelper.swift; sourceTree = "<group>"; };
 		BFD0DDE8202F55C7002614C4 /* HistoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCellViewModel.swift; sourceTree = "<group>"; };
 		BFD0DDEA202FB323002614C4 /* UITableViewCell+Bandit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Bandit.swift"; sourceTree = "<group>"; };
-		BFD0DDEC20300B15002614C4 /* GoTimePoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTimePoller.swift; sourceTree = "<group>"; };
 		BFD0DDEE2030C057002614C4 /* EquatableByValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquatableByValue.swift; sourceTree = "<group>"; };
 		BFD0DDF02030CA65002614C4 /* Array+Bandit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Bandit.swift"; sourceTree = "<group>"; };
 		BFE0E979200FF74A0049E939 /* GoTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTime.swift; sourceTree = "<group>"; };
@@ -237,8 +229,6 @@
 			isa = PBXGroup;
 			children = (
 				BF6BF412202816CA006E0086 /* PersistenceManager.swift */,
-				BF6BF41420281B59006E0086 /* JSONConvertable.swift */,
-				BFD0DDEC20300B15002614C4 /* GoTimePoller.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -247,8 +237,6 @@
 			isa = PBXGroup;
 			children = (
 				BFBD472B2013F0A700C43D78 /* Chain.swift */,
-				BF511591202617680016589F /* AsyncQueueItem.swift */,
-				BF8FBAA3202631AE00A43D91 /* AsyncQueue.swift */,
 				BFD0DDE6202EB93D002614C4 /* ErrorHelper.swift */,
 				BFD0DDEE2030C057002614C4 /* EquatableByValue.swift */,
 			);
@@ -504,15 +492,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF8FBAA4202631AE00A43D91 /* AsyncQueue.swift in Sources */,
-				BF6BF41520281B59006E0086 /* JSONConvertable.swift in Sources */,
 				BFBD47312014EC2200C43D78 /* GoTimeConfig.swift in Sources */,
 				BF009C7B200D35550071A142 /* GoTimesTableViewCell.swift in Sources */,
 				BF009C74200D22C70071A142 /* UIView+Bandit.swift in Sources */,
 				BFBD472F2014EB1600C43D78 /* GoTimeGroup.swift in Sources */,
 				BF8FBAA62026CF8E00A43D91 /* ActivityTransitionHelper.swift in Sources */,
 				BFD0DDE9202F55C7002614C4 /* HistoryCellViewModel.swift in Sources */,
-				BFD0DDED20300B15002614C4 /* GoTimePoller.swift in Sources */,
 				BF41E45B202E3C3B00163EB6 /* HistoryViewModel.swift in Sources */,
 				BF45CD68200D12720061AEB0 /* ViewHistoryViewController.swift in Sources */,
 				BF41E459202E2DD700163EB6 /* HistoryTableViewCell.swift in Sources */,
@@ -525,7 +510,6 @@
 				BF009C79200D236C0071A142 /* DateFormatter+Bandit.swift in Sources */,
 				BF51159420261BCA0016589F /* ObservableType+Bandit.swift in Sources */,
 				BF009C77200D22F70071A142 /* Date+Bandit.swift in Sources */,
-				BF511592202617680016589F /* AsyncQueueItem.swift in Sources */,
 				BF6BF413202816CA006E0086 /* PersistenceManager.swift in Sources */,
 				BF51158E202611D70016589F /* ElapsedTime.swift in Sources */,
 				BF95B0BC201E76F100151A82 /* ActiveGoTimeView.swift in Sources */,

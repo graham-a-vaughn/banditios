@@ -118,11 +118,7 @@ class GoTimeViewModel {
     
     /// Stops execution of the current go time
     func stop() {
-        print("BEFORE STOP: ")
-        print(goTimeGroup.desc())
         goTimeGroup.stop()
-        print("AFTER STOP: ")
-        print(goTimeGroup.desc())
         do {
             try persistenceManager.saveGoTimes(goTimeGroup)
         } catch {

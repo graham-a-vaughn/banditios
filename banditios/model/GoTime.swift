@@ -87,19 +87,6 @@ class GoTime: NSObject, NSCoding {
     }
 }
 
-extension GoTime: JSONConvertable {
-    func toJSON() -> JSON {
-        let json: [String: Any?] = [
-            "start": start.timeIntervalSinceReferenceDate,
-            "end": end?.timeIntervalSinceReferenceDate ?? "",
-            "type": [ "name": type.name, "primary": type.primary ]
-        ]
-        return JSON(json)
-    }
-    
-    
-}
-
 extension GoTime: ChainMutable {
     func acceptChain(other: GoTime) {
         self.ended(other.start)

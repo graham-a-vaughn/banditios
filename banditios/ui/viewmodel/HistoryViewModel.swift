@@ -70,7 +70,6 @@ class HistoryViewModel {
     private let disposeBag = DisposeBag()
     private let persistenceManager = PersistenceManager()
     private var goTimeGroups: [GoTimeGroup]
-    private let errorHelper: ErrorHelper
     private var poller: Timer?
     
     var historyChangeObs: Observable<[HistorySection]> {
@@ -79,23 +78,18 @@ class HistoryViewModel {
             
             return strongSelf.persistenceManager.goTimesObs
                 .subscribe(onNext: { groups in
-                    print("HISTORY")
-                    for g in groups {
-                        print(g.desc())
-                    }
                     observer.on(.next([HistorySection(goTimeGroups: groups)]))
             })
         }
     }
     
     init() {
-        let errorHelper = ErrorHelper()
         do {
             self.goTimeGroups = try persistenceManager.loadGoTimeGroups()
         } catch {
+            let errorHelper = ErrorHelper()
             errorHelper.handleError(error)
             self.goTimeGroups = []
         }
-        self.errorHelper = errorHelper
     }
 }

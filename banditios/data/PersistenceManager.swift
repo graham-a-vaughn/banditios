@@ -34,6 +34,13 @@ class PersistenceManager {
     private let errorHandler = ErrorHelper()
     private let disposeBag = DisposeBag()
     
+    var goTimesObs: Observable<[GoTimeGroup]> {
+        return goTimesSubject.asObservable()
+            .distinctUntilChanged { lhs, rhs in
+                return lhs.equalByValue(rhs)
+        }
+    }
+    
     init() {
         goTimesRelay.asObservable().subscribeNext(weak: self) { strongSelf, _ in
             do {
@@ -45,13 +52,6 @@ class PersistenceManager {
         }.disposed(by: disposeBag)
     }
     
-    var goTimesObs: Observable<[GoTimeGroup]> {
-        return goTimesSubject.asObservable()
-            .distinctUntilChanged { lhs, rhs in
-                return lhs.equalByValue(rhs)
-        }
-    }
-    
     func terminateOpenGoTimes() {
         do {
             var open: [GoTimeGroup] = []
@@ -61,7 +61,7 @@ class PersistenceManager {
                     open.append(time)
                 }
             }
-            
+            print("Auto-closing open go times, count: \(open.count)")
             for time in open {
                 try saveGoTimes(time)
             }
@@ -85,20 +85,6 @@ class PersistenceManager {
         try persistGoTime(goTimeGroup)
     }
     
-    private func persistGoTime(_ goTimeGroup: GoTimeGroup) throws {
-        try saveGoTimeGroupId(goTimeGroup.id)
-        
-        goTimeGroup.lastModified = Date.now
-        let saveDir = goTimeGroupPath(goTimeGroup.id)
-        if !NSKeyedArchiver.archiveRootObject(goTimeGroup, toFile: saveDir.path) {
-            throw PersistenceError.saveFailed(message: "Could not save go time groups: \(saveDir.path)")
-        }
-        print("Saved go times to: \(saveDir.path)")
-        goTimesRelay.accept(())
-    }
-    
-    
-    
     func loadGoTimeGroups() throws -> [GoTimeGroup] {
         let persistedIds = try loadOrFailGoTimeIds()
         var loadedGroups: [GoTimeGroup] = []
@@ -117,7 +103,16 @@ class PersistenceManager {
         return loadedGroups
     }
     
-    
+    private func persistGoTime(_ goTimeGroup: GoTimeGroup) throws {
+        try saveGoTimeGroupId(goTimeGroup.id)
+        
+        goTimeGroup.lastModified = Date.now
+        let saveDir = goTimeGroupPath(goTimeGroup.id)
+        if !NSKeyedArchiver.archiveRootObject(goTimeGroup, toFile: saveDir.path) {
+            throw PersistenceError.saveFailed(message: "Could not save go time groups: \(saveDir.path)")
+        }
+        goTimesRelay.accept(())
+    }
     
     private func loadGoTimeGroup(_ dir: String) throws -> GoTimeGroup {
         let goTimeGroup = NSKeyedUnarchiver.unarchiveObject(withFile: dir)

@@ -18,7 +18,6 @@ class ElapsedTimeViewModel {
     
     convenience init() {
         self.init(toUnit: .hour)
-        
     }
     
     required init(toUnit: TimeUnit) {

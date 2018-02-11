@@ -74,6 +74,10 @@ class ElapsedTime {
         }
     }
     
+    func display() -> String {
+        return nextDisplay() + getDisplay()
+    }
+    
     private func getDisplay() -> String {
         if self.value.value > 0 || displayZero {
             let raw = "\(self.value.value)"
@@ -88,9 +92,5 @@ class ElapsedTime {
             return nextDisplay + ":"
         }
         return ""
-    }
-    
-    func display() -> String {
-        return nextDisplay() + getDisplay()
     }
 }
