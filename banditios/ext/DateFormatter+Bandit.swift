@@ -18,4 +18,9 @@ extension DateFormatter {
         self.init()
         self.dateFormat = format
     }
+    
+    func concat(_ other: DateFormatter, separator: String) -> DateFormatter {
+        let format = "\(self.dateFormat)\(separator)\(other.dateFormat)"
+        return DateFormatter(format: format)
+    }
 }

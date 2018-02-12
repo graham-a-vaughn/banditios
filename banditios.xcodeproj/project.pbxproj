@@ -14,14 +14,30 @@
 		BF009C77200D22F70071A142 /* Date+Bandit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF009C76200D22F70071A142 /* Date+Bandit.swift */; };
 		BF009C79200D236C0071A142 /* DateFormatter+Bandit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF009C78200D236C0071A142 /* DateFormatter+Bandit.swift */; };
 		BF009C7B200D35550071A142 /* GoTimesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF009C7A200D35550071A142 /* GoTimesTableViewCell.swift */; };
+		BF41E459202E2DD700163EB6 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF41E458202E2DD700163EB6 /* HistoryTableViewCell.swift */; };
+		BF41E45B202E3C3B00163EB6 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF41E45A202E3C3B00163EB6 /* HistoryViewModel.swift */; };
 		BF45CD64200D12720061AEB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CD63200D12720061AEB0 /* AppDelegate.swift */; };
-		BF45CD66200D12720061AEB0 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CD65200D12720061AEB0 /* FirstViewController.swift */; };
-		BF45CD68200D12720061AEB0 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CD67200D12720061AEB0 /* SecondViewController.swift */; };
+		BF45CD66200D12720061AEB0 /* TrackTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CD65200D12720061AEB0 /* TrackTimeViewController.swift */; };
+		BF45CD68200D12720061AEB0 /* ViewHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CD67200D12720061AEB0 /* ViewHistoryViewController.swift */; };
 		BF45CD6B200D12720061AEB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF45CD69200D12720061AEB0 /* Main.storyboard */; };
 		BF45CD6D200D12720061AEB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF45CD6C200D12720061AEB0 /* Assets.xcassets */; };
 		BF45CD70200D12720061AEB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF45CD6E200D12720061AEB0 /* LaunchScreen.storyboard */; };
 		BF45CD7B200D12720061AEB0 /* banditiosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CD7A200D12720061AEB0 /* banditiosUITests.swift */; };
-		BF6799EC2012431B0078FAF7 /* TimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6799EB2012431B0078FAF7 /* TimeDisplay.swift */; };
+		BF51158C202611610016589F /* ElapsedTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF51158B202611610016589F /* ElapsedTimeViewModel.swift */; };
+		BF51158E202611D70016589F /* ElapsedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF51158D202611D70016589F /* ElapsedTime.swift */; };
+		BF51159420261BCA0016589F /* ObservableType+Bandit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF51159320261BCA0016589F /* ObservableType+Bandit.swift */; };
+		BF6BF413202816CA006E0086 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6BF412202816CA006E0086 /* PersistenceManager.swift */; };
+		BF8FBAA62026CF8E00A43D91 /* ActivityTransitionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FBAA52026CF8E00A43D91 /* ActivityTransitionHelper.swift */; };
+		BF95B0BC201E76F100151A82 /* ActiveGoTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF95B0BB201E76F100151A82 /* ActiveGoTimeView.swift */; };
+		BFBD472C2013F0A700C43D78 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBD472B2013F0A700C43D78 /* Chain.swift */; };
+		BFBD472F2014EB1600C43D78 /* GoTimeGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBD472E2014EB1600C43D78 /* GoTimeGroup.swift */; };
+		BFBD47312014EC2200C43D78 /* GoTimeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBD47302014EC2200C43D78 /* GoTimeConfig.swift */; };
+		BFBD473320151B8D00C43D78 /* GoTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBD473220151B8D00C43D78 /* GoTimeViewModel.swift */; };
+		BFD0DDE7202EB93D002614C4 /* ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDE6202EB93D002614C4 /* ErrorHelper.swift */; };
+		BFD0DDE9202F55C7002614C4 /* HistoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDE8202F55C7002614C4 /* HistoryCellViewModel.swift */; };
+		BFD0DDEB202FB323002614C4 /* UITableViewCell+Bandit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDEA202FB323002614C4 /* UITableViewCell+Bandit.swift */; };
+		BFD0DDEF2030C057002614C4 /* EquatableByValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDEE2030C057002614C4 /* EquatableByValue.swift */; };
+		BFD0DDF12030CA65002614C4 /* Array+Bandit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDF02030CA65002614C4 /* Array+Bandit.swift */; };
 		BFE0E97A200FF74A0049E939 /* GoTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE0E979200FF74A0049E939 /* GoTime.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,10 +60,12 @@
 		BF009C76200D22F70071A142 /* Date+Bandit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Bandit.swift"; sourceTree = "<group>"; };
 		BF009C78200D236C0071A142 /* DateFormatter+Bandit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Bandit.swift"; sourceTree = "<group>"; };
 		BF009C7A200D35550071A142 /* GoTimesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTimesTableViewCell.swift; sourceTree = "<group>"; };
+		BF41E458202E2DD700163EB6 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		BF41E45A202E3C3B00163EB6 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		BF45CD60200D12720061AEB0 /* banditios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = banditios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF45CD63200D12720061AEB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BF45CD65200D12720061AEB0 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		BF45CD67200D12720061AEB0 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		BF45CD65200D12720061AEB0 /* TrackTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTimeViewController.swift; sourceTree = "<group>"; };
+		BF45CD67200D12720061AEB0 /* ViewHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHistoryViewController.swift; sourceTree = "<group>"; };
 		BF45CD6A200D12720061AEB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BF45CD6C200D12720061AEB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF45CD6F200D12720061AEB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -55,7 +73,21 @@
 		BF45CD76200D12720061AEB0 /* banditiosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = banditiosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF45CD7A200D12720061AEB0 /* banditiosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = banditiosUITests.swift; sourceTree = "<group>"; };
 		BF45CD7C200D12720061AEB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BF6799EB2012431B0078FAF7 /* TimeDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplay.swift; sourceTree = "<group>"; };
+		BF51158B202611610016589F /* ElapsedTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTimeViewModel.swift; sourceTree = "<group>"; };
+		BF51158D202611D70016589F /* ElapsedTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTime.swift; sourceTree = "<group>"; };
+		BF51159320261BCA0016589F /* ObservableType+Bandit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Bandit.swift"; sourceTree = "<group>"; };
+		BF6BF412202816CA006E0086 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		BF8FBAA52026CF8E00A43D91 /* ActivityTransitionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTransitionHelper.swift; sourceTree = "<group>"; };
+		BF95B0BB201E76F100151A82 /* ActiveGoTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGoTimeView.swift; sourceTree = "<group>"; };
+		BFBD472B2013F0A700C43D78 /* Chain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
+		BFBD472E2014EB1600C43D78 /* GoTimeGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTimeGroup.swift; sourceTree = "<group>"; };
+		BFBD47302014EC2200C43D78 /* GoTimeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTimeConfig.swift; sourceTree = "<group>"; };
+		BFBD473220151B8D00C43D78 /* GoTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTimeViewModel.swift; sourceTree = "<group>"; };
+		BFD0DDE6202EB93D002614C4 /* ErrorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHelper.swift; sourceTree = "<group>"; };
+		BFD0DDE8202F55C7002614C4 /* HistoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCellViewModel.swift; sourceTree = "<group>"; };
+		BFD0DDEA202FB323002614C4 /* UITableViewCell+Bandit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Bandit.swift"; sourceTree = "<group>"; };
+		BFD0DDEE2030C057002614C4 /* EquatableByValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquatableByValue.swift; sourceTree = "<group>"; };
+		BFD0DDF02030CA65002614C4 /* Array+Bandit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Bandit.swift"; sourceTree = "<group>"; };
 		BFE0E979200FF74A0049E939 /* GoTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTime.swift; sourceTree = "<group>"; };
 		CF4784F3540CF31FDEA2166C /* Pods-banditios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banditios.release.xcconfig"; path = "Pods/Target Support Files/Pods-banditios/Pods-banditios.release.xcconfig"; sourceTree = "<group>"; };
 		D9A5BFF8CA0E40C2FCFAD777 /* Pods-banditiosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banditiosUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-banditiosUITests/Pods-banditiosUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -109,6 +141,9 @@
 				BF009C72200D22C70071A142 /* UIView+Bandit.swift */,
 				BF009C76200D22F70071A142 /* Date+Bandit.swift */,
 				BF009C78200D236C0071A142 /* DateFormatter+Bandit.swift */,
+				BF51159320261BCA0016589F /* ObservableType+Bandit.swift */,
+				BFD0DDEA202FB323002614C4 /* UITableViewCell+Bandit.swift */,
+				BFD0DDF02030CA65002614C4 /* Array+Bandit.swift */,
 			);
 			path = ext;
 			sourceTree = "<group>";
@@ -136,17 +171,14 @@
 		BF45CD62200D12720061AEB0 /* banditios */ = {
 			isa = PBXGroup;
 			children = (
-				BFE0E978200FF7090049E939 /* viewmodel */,
+				BF6BF411202816A6006E0086 /* data */,
+				BF51158F202614980016589F /* ui */,
+				BFBD472D20144B2200C43D78 /* model */,
+				BFBD472A2013F08E00C43D78 /* utils */,
 				BF009C71200D22690071A142 /* ext */,
 				BF45CD63200D12720061AEB0 /* AppDelegate.swift */,
-				BF45CD65200D12720061AEB0 /* FirstViewController.swift */,
-				BF45CD67200D12720061AEB0 /* SecondViewController.swift */,
-				BF45CD69200D12720061AEB0 /* Main.storyboard */,
 				BF45CD6C200D12720061AEB0 /* Assets.xcassets */,
-				BF45CD6E200D12720061AEB0 /* LaunchScreen.storyboard */,
 				BF45CD71200D12720061AEB0 /* Info.plist */,
-				BF009C7A200D35550071A142 /* GoTimesTableViewCell.swift */,
-				BF6799EB2012431B0078FAF7 /* TimeDisplay.swift */,
 			);
 			path = banditios;
 			sourceTree = "<group>";
@@ -160,10 +192,74 @@
 			path = banditiosUITests;
 			sourceTree = "<group>";
 		};
+		BF51158A2026113D0016589F /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				BF51158B202611610016589F /* ElapsedTimeViewModel.swift */,
+				BF51158D202611D70016589F /* ElapsedTime.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		BF51158F202614980016589F /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				BFE0E978200FF7090049E939 /* viewmodel */,
+				BF511590202616400016589F /* view */,
+				BF45CD65200D12720061AEB0 /* TrackTimeViewController.swift */,
+				BF45CD67200D12720061AEB0 /* ViewHistoryViewController.swift */,
+				BF45CD69200D12720061AEB0 /* Main.storyboard */,
+				BF45CD6E200D12720061AEB0 /* LaunchScreen.storyboard */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		BF511590202616400016589F /* view */ = {
+			isa = PBXGroup;
+			children = (
+				BF009C7A200D35550071A142 /* GoTimesTableViewCell.swift */,
+				BF95B0BB201E76F100151A82 /* ActiveGoTimeView.swift */,
+				BF8FBAA52026CF8E00A43D91 /* ActivityTransitionHelper.swift */,
+				BF41E458202E2DD700163EB6 /* HistoryTableViewCell.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		BF6BF411202816A6006E0086 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				BF6BF412202816CA006E0086 /* PersistenceManager.swift */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		BFBD472A2013F08E00C43D78 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				BFBD472B2013F0A700C43D78 /* Chain.swift */,
+				BFD0DDE6202EB93D002614C4 /* ErrorHelper.swift */,
+				BFD0DDEE2030C057002614C4 /* EquatableByValue.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		BFBD472D20144B2200C43D78 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				BFBD472E2014EB1600C43D78 /* GoTimeGroup.swift */,
+				BFBD47302014EC2200C43D78 /* GoTimeConfig.swift */,
+				BFE0E979200FF74A0049E939 /* GoTime.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		BFE0E978200FF7090049E939 /* viewmodel */ = {
 			isa = PBXGroup;
 			children = (
-				BFE0E979200FF74A0049E939 /* GoTime.swift */,
+				BF51158A2026113D0016589F /* utils */,
+				BFBD473220151B8D00C43D78 /* GoTimeViewModel.swift */,
+				BF41E45A202E3C3B00163EB6 /* HistoryViewModel.swift */,
+				BFD0DDE8202F55C7002614C4 /* HistoryCellViewModel.swift */,
 			);
 			path = viewmodel;
 			sourceTree = "<group>";
@@ -372,6 +468,8 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -379,6 +477,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -392,16 +492,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFBD47312014EC2200C43D78 /* GoTimeConfig.swift in Sources */,
 				BF009C7B200D35550071A142 /* GoTimesTableViewCell.swift in Sources */,
 				BF009C74200D22C70071A142 /* UIView+Bandit.swift in Sources */,
-				BF45CD68200D12720061AEB0 /* SecondViewController.swift in Sources */,
+				BFBD472F2014EB1600C43D78 /* GoTimeGroup.swift in Sources */,
+				BF8FBAA62026CF8E00A43D91 /* ActivityTransitionHelper.swift in Sources */,
+				BFD0DDE9202F55C7002614C4 /* HistoryCellViewModel.swift in Sources */,
+				BF41E45B202E3C3B00163EB6 /* HistoryViewModel.swift in Sources */,
+				BF45CD68200D12720061AEB0 /* ViewHistoryViewController.swift in Sources */,
+				BF41E459202E2DD700163EB6 /* HistoryTableViewCell.swift in Sources */,
+				BFBD472C2013F0A700C43D78 /* Chain.swift in Sources */,
+				BFD0DDEF2030C057002614C4 /* EquatableByValue.swift in Sources */,
 				BF45CD64200D12720061AEB0 /* AppDelegate.swift in Sources */,
-				BF45CD66200D12720061AEB0 /* FirstViewController.swift in Sources */,
-				BF6799EC2012431B0078FAF7 /* TimeDisplay.swift in Sources */,
+				BFD0DDE7202EB93D002614C4 /* ErrorHelper.swift in Sources */,
+				BF45CD66200D12720061AEB0 /* TrackTimeViewController.swift in Sources */,
 				BF009C75200D22C70071A142 /* NSObject+Bandit.swift in Sources */,
 				BF009C79200D236C0071A142 /* DateFormatter+Bandit.swift in Sources */,
+				BF51159420261BCA0016589F /* ObservableType+Bandit.swift in Sources */,
 				BF009C77200D22F70071A142 /* Date+Bandit.swift in Sources */,
+				BF6BF413202816CA006E0086 /* PersistenceManager.swift in Sources */,
+				BF51158E202611D70016589F /* ElapsedTime.swift in Sources */,
+				BF95B0BC201E76F100151A82 /* ActiveGoTimeView.swift in Sources */,
+				BFD0DDEB202FB323002614C4 /* UITableViewCell+Bandit.swift in Sources */,
 				BFE0E97A200FF74A0049E939 /* GoTime.swift in Sources */,
+				BFD0DDF12030CA65002614C4 /* Array+Bandit.swift in Sources */,
+				BF51158C202611610016589F /* ElapsedTimeViewModel.swift in Sources */,
+				BFBD473320151B8D00C43D78 /* GoTimeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,7 +607,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -542,7 +658,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
