@@ -74,33 +74,55 @@ extension GoTimeRow : IdentifiableType, Equatable {
 
 /// View model for the currently active cycle
 class GoTimeViewModel {
+    private let disposeBag = DisposeBag()
     
     private let goTimeGroup = GoTimeGroup(goTimes: nil)
     private let typeConfig: GoTimeTypeConfig
-    private let publisher = PublishRelay<GoTimeGroup>()
-    private let disposeBag = DisposeBag()
+    
+    private let relay = ReplaySubject<TrackingStateModel>.create(bufferSize: 1)
+    
     private let persistenceManager = PersistenceManager()
     private let errorHelper = ErrorHelper()
     
     private let chill = GoTimeType(name: "Not Work", primary: false)
     private let work = GoTimeType(name: "Work", primary: true)
     
-    /// Emits a new section model for every change in the underlying model
-    var goTimeSectionObs: Observable<[GoTimeSection]> {
-        return Observable.create { [weak self] observer in
-            guard let strongSelf = self else { return Disposables.create() }
-            
-            return strongSelf.goTimeGroup.valueChangedObs.subscribe(onNext: { group in
-                observer.on(.next([GoTimeSection(goTimeGroup: group)]))
-            })
-        }
+    var trackingStateObs: Observable<TrackingStateModel> {
+        return relay.asObservable()
     }
     
     init() {
         self.typeConfig = GoTimeTypeConfig(self.chill)
         configureTypes()
+        transition(.ready)
     }
     
+    func transition(_ state: TrackingState) {
+        switch state {
+        case .ready:
+            let model = TrackingStateModel(goTime: nil, goTimeGroup: goTimeGroup, state: .ready)
+            relay.onNext(model)
+        case .tracking:
+            let goTime = nextGoTime()
+            let model = TrackingStateModel(goTime: goTime, goTimeGroup: goTimeGroup, state: .tracking)
+            relay.onNext(model)
+        case .paused:
+            guard let goTime = goTimeGroup.current() else { return }
+            goTime.pause()
+            let model = TrackingStateModel(goTime: goTime, goTimeGroup: goTimeGroup, state: .paused)
+            relay.onNext(model)
+        case .resumed:
+            guard let goTime = goTimeGroup.current() else { return }
+            goTime.resume()
+            let model = TrackingStateModel(goTime: goTime, goTimeGroup: goTimeGroup, state: .resumed)
+            relay.onNext(model)
+        case .stopped:
+            stop()
+            let model = TrackingStateModel(goTime: nil, goTimeGroup: goTimeGroup, state: .stopped)
+            relay.onNext(model)
+        }
+    }
+        
     /// Stops execution of the current go time, starts the next go time and returns it
     func nextGoTime() -> GoTime {
         let now = Date.now

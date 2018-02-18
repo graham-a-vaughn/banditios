@@ -17,6 +17,46 @@ struct GoTimeProps {
     static let type = "TypeName"
     static let start = "Start"
     static let end = "End"
+    static let pauses = "Pauses"
+    static let pauseStart = "PauseStart"
+    static let pauseEnd = "PauseEnd"
+}
+
+class Pause: NSObject, NSCoding {
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(start, forKey: GoTimeProps.pauseStart)
+        aCoder.encode(end, forKey: GoTimeProps.pauseEnd)
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        let decodeStart = aDecoder.decodeObject(forKey: GoTimeProps.pauseStart)
+        let decodeEnd = aDecoder.decodeObject(forKey: GoTimeProps.pauseEnd)
+        guard let started = decodeStart as? Date else {
+            print("Could not decode pause start")
+            return nil
+        }
+        let ended: Date? = decodeEnd != nil ? decodeEnd as! Date? : nil
+        self.init(started, ended)
+    }
+    
+    required init(_ start: Date, _ end: Date?) {
+        self.start = start
+        self.end = end
+        super.init()
+    }
+    
+    convenience init(start: Date) {
+        self.init(start, nil)
+    }
+    
+    let start: Date
+    var end: Date?
+    
+    var timePaused: TimeInterval {
+        guard let endTime = end else { return 0 }
+        
+        return endTime - start
+    }
 }
 
 class GoTime: NSObject, NSCoding {
@@ -24,10 +64,19 @@ class GoTime: NSObject, NSCoding {
     static let persistDir = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = persistDir.appendingPathComponent("goTime")
     
+    private var pauses: [Pause] = []
+    
+    
+    var isPaused: Bool {
+        return pauses.last?.start != nil
+            && pauses.last?.end == nil
+    }
+    
     func encode(with aCoder: NSCoder) {
         aCoder.encode(type.name, forKey: GoTimeProps.type)
         aCoder.encode(start, forKey: GoTimeProps.start)
         aCoder.encode(end, forKey: GoTimeProps.end)
+        aCoder.encode(pauses, forKey: GoTimeProps.pauses)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -40,8 +89,9 @@ class GoTime: NSObject, NSCoding {
             return nil
         }
         let decodeEnd = aDecoder.decodeObject(forKey: GoTimeProps.end) as? Date
+        let decodePauses = aDecoder.decodeObject(forKey: GoTimeProps.pauses) as? [Pause]
         let toType = GoTimeType(name: decodeType, primary: false)
-        self.init(start: decodeStart, end: decodeEnd, type: toType)
+        self.init(start: decodeStart, end: decodeEnd, type: toType, pauses: decodePauses)
     }
     
     static func ==(lhs: GoTime, rhs: GoTime) -> Bool {
@@ -63,14 +113,37 @@ class GoTime: NSObject, NSCoding {
         return _endRelay.asObservable()
     }
     
+    var timePaused: TimeInterval {
+        let time = 0.0
+        return pauses.reduce(time) { result, pause in
+            let acc = result + pause.timePaused
+            return acc
+        }
+    }
     convenience init(start: Date, type: GoTimeType) {
         self.init(start: start, end: nil, type: type)
     }
     
-    required init(start: Date, end: Date?, type: GoTimeType) {
+    required init(start: Date, end: Date?, type: GoTimeType, pauses: [Pause]? = nil) {
         self.start = start
         self._end = end
         self.type = type
+        super.init()
+        if let pauseVals = pauses {
+            self.pauses.append(contentsOf: pauseVals)
+        }
+    }
+    
+    func pause() {
+        guard !isPaused else { return }
+        
+        pauses.append(Pause(start: Date.now))
+    }
+    
+    func resume() {
+        guard isPaused else { return }
+        
+        pauses.last?.end = Date.now
     }
     
     func ended(_ endTime: Date) {

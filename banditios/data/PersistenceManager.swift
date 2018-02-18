@@ -72,16 +72,14 @@ class PersistenceManager {
     }
     
     func autoSaveGoTimes(_ goTimeGroup: GoTimeGroup) throws {
-        guard !goTimeGroup.isEmpty else { return }
+        guard !goTimeGroup.isEmpty && !goTimeGroup.isLocked else { return }
         try persistGoTime(goTimeGroup)
     }
     
     func saveGoTimes(_ goTimeGroup: GoTimeGroup) throws {
         guard !goTimeGroup.isEmpty else { return }
         
-        if goTimeGroup.items.last?.end == nil {
-            goTimeGroup.stop()
-        }
+        goTimeGroup.buttonUp()
         try persistGoTime(goTimeGroup)
     }
     

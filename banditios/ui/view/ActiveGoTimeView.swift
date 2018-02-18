@@ -12,6 +12,9 @@ import RxSwift
 import RxCocoa
 
 class ActiveGoTimeView: UIView {
+    private static let activityTransition = 1.0
+    private static let readyLabelTransition = 0.25
+    private static let readyBlinkRate = 0.25
     
     @IBOutlet private var typeLabel: UILabel!
     @IBOutlet private var timeLabel: UILabel!
@@ -25,6 +28,7 @@ class ActiveGoTimeView: UIView {
     private var elapsedTimeObs: Observable<String>?
     private var endedObs: Observable<Date>?
     private var elapsedTimeDisposable = SerialDisposable()
+    private var readyBlinkerDisposable = SerialDisposable()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,32 +38,112 @@ class ActiveGoTimeView: UIView {
         super.init(coder: aDecoder)
     }
     
+    func configure(_ stateObs: Observable<TrackingStateModel>) {
+        initialize()
+        stateObs.subscribeNext(weak: self) { strongSelf, model in
+            strongSelf.stateChanged(model)
+        }
+        .disposed(by: disposeBag)
+    }
+    
     private func initialize() {
         disposeBag.insert(elapsedTimeDisposable)
-        readyView.alpha = 0.0
-        readyLabel.alpha = 0.0
-    }
-    
-    func ready() {
-        _ = transitionHelper.startActivityTransition(readyView)
-        _ = transitionHelper.showReadyLabel(readyLabel)
-        _ = transitionHelper.blinkReadyLabel(readyLabel)
-    }
-    
-    func configure(_ goTime: GoTime) {
-        transitionHelper.stopBlinkingReadyLabel()
-        _ = transitionHelper.hideReadyLabel(readyLabel)
-        _ = transitionHelper.startActivityTransition(readyView)
-        configureLabels(goTime)
-        bindObservables(goTime)
-        self.goTime = goTime
-        _ = transitionHelper.endActivityTransition(readyView)
+        disposeBag.insert(readyBlinkerDisposable)
+        //readyView.alpha = 0.0
+        //readyLabel.alpha = 0.0
     }
     
     private func configureLabels(_ goTime: GoTime) {
         typeLabel.text = "\(goTime.type.name)"
         timeLabel.text = "\(goTime.start.asTimeWithSecondsString())"
     }
+    
+    func stateChanged(_ new: TrackingStateModel) {
+        transition()
+        switch new.state {
+        case .ready:
+            ready()
+        case .tracking:
+            guard let goTime = new.goTime else { return }
+            next(goTime)
+        case .paused:
+            pause()
+        case .resumed:
+            guard let goTime = new.goTime else { return }
+            resume(goTime)
+        case .stopped:
+            stop()
+        }
+    }
+    
+    private func transition() {
+        transitionHelper.endActivityTransition(readyLabel, ActiveGoTimeView.readyLabelTransition)
+        
+        elapsedTimeDisposable.disposable.dispose()
+        readyBlinkerDisposable.dispose()
+        
+        elapsedTimeDisposable = SerialDisposable()
+        readyBlinkerDisposable = SerialDisposable()
+        disposeBag.insert(elapsedTimeDisposable)
+        disposeBag.insert(readyBlinkerDisposable)
+    }
+    
+    func ready() {
+        transitionHelper.startActivityTransition(readyView, ActiveGoTimeView.activityTransition)
+        transitionHelper.startActivityTransition(readyLabel, ActiveGoTimeView.readyLabelTransition)
+        readyBlinkerDisposable.disposable = transitionHelper.blink(readyLabel, ActiveGoTimeView.readyBlinkRate)
+        
+    }
+    
+    private func next(_ goTime: GoTime) {
+        transitionHelper.startActivityTransition(readyView, ActiveGoTimeView.activityTransition)
+        configureLabels(goTime)
+        startElapsedTimeDisplay(Date.now - goTime.start)
+        transitionHelper.endActivityTransition(readyView, ActiveGoTimeView.activityTransition)
+    }
+    
+    private func pause() {
+        stopElapsedTimeDisplay()
+    }
+    
+    private func resume(_ goTime: GoTime) {
+        let timePaused = goTime.timePaused
+        let startingAt = (Date.now - goTime.start) - timePaused
+        startElapsedTimeDisplay(startingAt)
+    }
+    
+    private func stop() {
+        stopElapsedTimeDisplay()
+    }
+    
+    private func stopElapsedTimeDisplay() {
+        _ = elapsedTimeDisplay?.stop()
+    }
+    
+    private func startElapsedTimeDisplay(_ startingAt: TimeInterval) {
+        let elapsedTimeDisplay = ElapsedTimeViewModel(startingAt: startingAt)
+        let elapsedTimeObs = elapsedTimeDisplay.go()
+        elapsedTimeDisposable.disposable = elapsedTimeObs.bind(to: durationLabel.rx.text)
+        self.elapsedTimeDisplay = elapsedTimeDisplay
+        self.elapsedTimeObs = elapsedTimeObs
+    }
+    
+    
+    
+    
+    
+    func configure(_ goTime: GoTime) {
+        transitionHelper.stopBlinkingReadyLabel()
+        transitionHelper.endActivityTransition(readyLabel, ActiveGoTimeView.readyLabelTransition)
+        transitionHelper.startActivityTransition(readyView, ActiveGoTimeView.activityTransition)
+        configureLabels(goTime)
+        bindObservables(goTime)
+        self.goTime = goTime
+        transitionHelper.endActivityTransition(readyView, ActiveGoTimeView.activityTransition)
+    }
+    
+    
+    
     
     private func bindObservables(_ goTime: GoTime) {
         let elapsedTimeDisplay = ElapsedTimeViewModel(startingAt: Date.now - goTime.start)
@@ -68,16 +152,15 @@ class ActiveGoTimeView: UIView {
         
         let endedObs = goTime.didEndObs.asObservable()
         endedObs.subscribe(onNext: { [weak self] ended in
-                guard let strongSelf = self else { return }
-                strongSelf.ended()
-            })
+            guard let strongSelf = self else { return }
+            strongSelf.ended()
+        })
             .disposed(by: disposeBag)
         
         self.elapsedTimeDisplay = elapsedTimeDisplay
         self.elapsedTimeObs = elapsedTimeObs
         self.endedObs = endedObs
     }
-    
     private func ended() {
         let final = elapsedTimeDisplay?.stop()
         durationLabel.text = final ?? "shit"

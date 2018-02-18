@@ -15,12 +15,16 @@ struct GoTimeGroupProps {
     static let goTimes = "GoTimes"
     static let lastModified = "LastModified"
 }
+
+
+
 class GoTimeGroup: NSObject, NSCoding {
     
     let id: Int
     private let goTimes = Chain<GoTime>()
     private let publisher = ReplaySubject<GoTimeGroup>.createUnbounded()
     var lastModified: Date
+    private var locked = false
     
     var createdDate: Date {
         return Date(timeIntervalSince1970: TimeInterval(id))
@@ -48,6 +52,14 @@ class GoTimeGroup: NSObject, NSCoding {
     
     var size: Int {
         return items.count
+    }
+    
+    var isEnded: Bool {
+        return endTime != nil
+    }
+    
+    var isLocked: Bool {
+        return locked
     }
     
     convenience init(goTimes: [GoTime]?) {
@@ -94,9 +106,26 @@ class GoTimeGroup: NSObject, NSCoding {
         return goTimes.peek()
     }
     
+    
+    
     func stop() {
-        goTimes.end()
-        publisher.on(.next(self))
+        if !isEmpty {
+            goTimes.end()
+            publisher.on(.next(self))
+        }
+    }
+    
+    func lock() {
+        locked = true
+    }
+    
+    func buttonUp() {
+        if current()?.isPaused == true {
+            current()?.resume()
+        }
+        if !isEnded {
+            stop()
+        }
     }
     
     func desc() -> String {
@@ -107,8 +136,6 @@ class GoTimeGroup: NSObject, NSCoding {
         }
         return result
     }
-    
-    
 }
 
 extension GoTimeGroup: EquatableByValue {
