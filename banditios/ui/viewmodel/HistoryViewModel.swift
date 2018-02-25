@@ -78,6 +78,7 @@ class HistoryViewModel {
             
             return strongSelf.persistenceManager.goTimesObs
                 .subscribe(onNext: { groups in
+                    
                     observer.on(.next([HistorySection(goTimeGroups: groups)]))
             })
         }

@@ -98,6 +98,15 @@ class PersistenceManager {
         }
         print("Loaded all go time ids, count: \(loadedGroups.count)")
         try pruneGoTimeIds(misses)
+        loadedGroups.sort { lhs, rhs in
+            if let lstart = lhs.startTime {
+                if let rstart = rhs.startTime {
+                    return lstart > rstart
+                }
+                return true
+            }
+            return false
+        }
         return loadedGroups
     }
     
