@@ -19,8 +19,12 @@ class ActivityTransitionHelper {
     private var blinking = BehaviorRelay<CGFloat>(value: 1.0)
     private var blinkTimer: Timer? = nil
     
-    func startActivityTransition(_ transitionView: UIView, _ duration: TimeInterval? = 1.0 ) {
+    func showElement(_ transitionView: UIView, _ duration: TimeInterval? = 1.0 ) {
         _ = show(transitionView)
+    }
+    
+    func hideElement(_ transitionView: UIView, _ duration: TimeInterval? = 1.0) {
+        _ = hide(transitionView, duration ?? 1.0)
     }
     
     private func show(_ transitionView: UIView, _ duration: TimeInterval? = 1.0) -> Bool {
@@ -38,45 +42,6 @@ class ActivityTransitionHelper {
                 transitionView.alpha = 0.0
             }
         }
-        return true
-    }
-    
-    
-    func endActivityTransition(_ transitionView: UIView, _ duration: TimeInterval? = 1.0) {
-        _ = hide(transitionView, duration ?? 1.0)
-    }
-    
-    func showReadyLabel(_ label: UILabel) -> Bool {
-        animationQueue.sync {
-            UIView.animate(withDuration: 0.5) {
-                label.alpha = 1.0
-            }
-        }
-        return true
-    }
-    
-    func hideReadyLabel(_ label: UILabel) -> Bool {
-        animationQueue.sync {
-            UIView.animate(withDuration: 0.25) {
-                label.alpha = 0.0
-            }
-        }
-        return true
-    }
-    
-    func blinkReadyLabel(_ label: UILabel, _ duration: TimeInterval? = 1.0) -> Bool {
-        guard self.blinkTimer == nil else { return false }
-        let blinkTimer = Timer.scheduledTimer(withTimeInterval: duration ?? 1.0, repeats: true) { [weak self] _ in
-            guard let strongSelf = self else { return }
-            UIView.animate(withDuration: duration ?? 1.0, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.5, options: UIViewAnimationOptions.curveEaseIn, animations: {
-                label.alpha = strongSelf.blinkAlpha()
-                
-            }, completion: nil)
-        }
-        
-        self.blinkTimer = blinkTimer
-        
-        
         return true
     }
     

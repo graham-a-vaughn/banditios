@@ -40,6 +40,9 @@
 		BFD0DDEF2030C057002614C4 /* EquatableByValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDEE2030C057002614C4 /* EquatableByValue.swift */; };
 		BFD0DDF12030CA65002614C4 /* Array+Bandit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD0DDF02030CA65002614C4 /* Array+Bandit.swift */; };
 		BFE0E97A200FF74A0049E939 /* GoTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE0E979200FF74A0049E939 /* GoTime.swift */; };
+		BFEEA15D203A0DF6009DDE27 /* TimeTrackingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEEA15C203A0DF6009DDE27 /* TimeTrackingButtonView.swift */; };
+		BFEEA15F203B658A009DDE27 /* ConstraintLayoutMathSyntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEEA15E203B658A009DDE27 /* ConstraintLayoutMathSyntax.swift */; };
+		BFEEA162203C764A009DDE27 /* DynamicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEEA161203C764A009DDE27 /* DynamicButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +94,9 @@
 		BFD0DDEE2030C057002614C4 /* EquatableByValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquatableByValue.swift; sourceTree = "<group>"; };
 		BFD0DDF02030CA65002614C4 /* Array+Bandit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Bandit.swift"; sourceTree = "<group>"; };
 		BFE0E979200FF74A0049E939 /* GoTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTime.swift; sourceTree = "<group>"; };
+		BFEEA15C203A0DF6009DDE27 /* TimeTrackingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackingButtonView.swift; sourceTree = "<group>"; };
+		BFEEA15E203B658A009DDE27 /* ConstraintLayoutMathSyntax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintLayoutMathSyntax.swift; sourceTree = "<group>"; };
+		BFEEA161203C764A009DDE27 /* DynamicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicButton.swift; sourceTree = "<group>"; };
 		CF4784F3540CF31FDEA2166C /* Pods-banditios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banditios.release.xcconfig"; path = "Pods/Target Support Files/Pods-banditios/Pods-banditios.release.xcconfig"; sourceTree = "<group>"; };
 		D9A5BFF8CA0E40C2FCFAD777 /* Pods-banditiosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banditiosUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-banditiosUITests/Pods-banditiosUITests.release.xcconfig"; sourceTree = "<group>"; };
 		FA753C0C3A9FB409653D9B5F /* Pods-banditiosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-banditiosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-banditiosUITests/Pods-banditiosUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +212,7 @@
 		BF51158F202614980016589F /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				BFEEA160203C761F009DDE27 /* common */,
 				BFE0E978200FF7090049E939 /* viewmodel */,
 				BF511590202616400016589F /* view */,
 				BF45CD65200D12720061AEB0 /* TrackTimeViewController.swift */,
@@ -223,6 +230,7 @@
 				BF95B0BB201E76F100151A82 /* ActiveGoTimeView.swift */,
 				BF8FBAA52026CF8E00A43D91 /* ActivityTransitionHelper.swift */,
 				BF41E458202E2DD700163EB6 /* HistoryTableViewCell.swift */,
+				BFEEA15C203A0DF6009DDE27 /* TimeTrackingButtonView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -241,6 +249,7 @@
 				BFBD472B2013F0A700C43D78 /* Chain.swift */,
 				BFD0DDE6202EB93D002614C4 /* ErrorHelper.swift */,
 				BFD0DDEE2030C057002614C4 /* EquatableByValue.swift */,
+				BFEEA15E203B658A009DDE27 /* ConstraintLayoutMathSyntax.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -265,6 +274,14 @@
 				BFA4E9DC2033FA05008E6E74 /* TrackingStateMachine.swift */,
 			);
 			path = viewmodel;
+			sourceTree = "<group>";
+		};
+		BFEEA160203C761F009DDE27 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				BFEEA161203C764A009DDE27 /* DynamicButton.swift */,
+			);
+			path = common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,6 +520,8 @@
 				BFD0DDE9202F55C7002614C4 /* HistoryCellViewModel.swift in Sources */,
 				BF41E45B202E3C3B00163EB6 /* HistoryViewModel.swift in Sources */,
 				BF45CD68200D12720061AEB0 /* ViewHistoryViewController.swift in Sources */,
+				BFEEA15F203B658A009DDE27 /* ConstraintLayoutMathSyntax.swift in Sources */,
+				BFEEA15D203A0DF6009DDE27 /* TimeTrackingButtonView.swift in Sources */,
 				BF41E459202E2DD700163EB6 /* HistoryTableViewCell.swift in Sources */,
 				BFBD472C2013F0A700C43D78 /* Chain.swift in Sources */,
 				BFA4E9DD2033FA05008E6E74 /* TrackingStateMachine.swift in Sources */,
@@ -522,6 +541,7 @@
 				BFD0DDF12030CA65002614C4 /* Array+Bandit.swift in Sources */,
 				BF51158C202611610016589F /* ElapsedTimeViewModel.swift in Sources */,
 				BFBD473320151B8D00C43D78 /* GoTimeViewModel.swift in Sources */,
+				BFEEA162203C764A009DDE27 /* DynamicButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

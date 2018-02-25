@@ -29,6 +29,7 @@ class ActiveGoTimeView: UIView {
     private var endedObs: Observable<Date>?
     private var elapsedTimeDisposable = SerialDisposable()
     private var readyBlinkerDisposable = SerialDisposable()
+    private let stateDisposable = SerialDisposable()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,17 +41,20 @@ class ActiveGoTimeView: UIView {
     
     func configure(_ stateObs: Observable<TrackingStateModel>) {
         initialize()
-        stateObs.subscribeNext(weak: self) { strongSelf, model in
+        
+        observe(stateObs)
+    }
+    
+    func observe(_ stateObs: Observable<TrackingStateModel>) {
+        stateDisposable.disposable = stateObs.subscribeNext(weak: self) { strongSelf, model in
             strongSelf.stateChanged(model)
         }
-        .disposed(by: disposeBag)
     }
     
     private func initialize() {
         disposeBag.insert(elapsedTimeDisposable)
         disposeBag.insert(readyBlinkerDisposable)
-        //readyView.alpha = 0.0
-        //readyLabel.alpha = 0.0
+        disposeBag.insert(stateDisposable)
     }
     
     private func configureLabels(_ goTime: GoTime) {
@@ -73,11 +77,14 @@ class ActiveGoTimeView: UIView {
             resume(goTime)
         case .stopped:
             stop()
+        default:
+            return
         }
+        
     }
     
     private func transition() {
-        transitionHelper.endActivityTransition(readyLabel, ActiveGoTimeView.readyLabelTransition)
+        transitionHelper.hideElement(readyLabel, ActiveGoTimeView.readyLabelTransition)
         
         elapsedTimeDisposable.disposable.dispose()
         readyBlinkerDisposable.dispose()
@@ -89,17 +96,17 @@ class ActiveGoTimeView: UIView {
     }
     
     func ready() {
-        transitionHelper.startActivityTransition(readyView, ActiveGoTimeView.activityTransition)
-        transitionHelper.startActivityTransition(readyLabel, ActiveGoTimeView.readyLabelTransition)
+        transitionHelper.showElement(readyView, ActiveGoTimeView.activityTransition)
+        transitionHelper.showElement(readyLabel, ActiveGoTimeView.readyLabelTransition)
         readyBlinkerDisposable.disposable = transitionHelper.blink(readyLabel, ActiveGoTimeView.readyBlinkRate)
         
     }
     
     private func next(_ goTime: GoTime) {
-        transitionHelper.startActivityTransition(readyView, ActiveGoTimeView.activityTransition)
+        transitionHelper.showElement(readyView, ActiveGoTimeView.activityTransition)
         configureLabels(goTime)
         startElapsedTimeDisplay(Date.now - goTime.start)
-        transitionHelper.endActivityTransition(readyView, ActiveGoTimeView.activityTransition)
+        transitionHelper.hideElement(readyView, ActiveGoTimeView.activityTransition)
     }
     
     private func pause() {
@@ -134,12 +141,12 @@ class ActiveGoTimeView: UIView {
     
     func configure(_ goTime: GoTime) {
         transitionHelper.stopBlinkingReadyLabel()
-        transitionHelper.endActivityTransition(readyLabel, ActiveGoTimeView.readyLabelTransition)
-        transitionHelper.startActivityTransition(readyView, ActiveGoTimeView.activityTransition)
+        transitionHelper.hideElement(readyLabel, ActiveGoTimeView.readyLabelTransition)
+        transitionHelper.showElement(readyView, ActiveGoTimeView.activityTransition)
         configureLabels(goTime)
         bindObservables(goTime)
         self.goTime = goTime
-        transitionHelper.endActivityTransition(readyView, ActiveGoTimeView.activityTransition)
+        transitionHelper.hideElement(readyView, ActiveGoTimeView.activityTransition)
     }
     
     

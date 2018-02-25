@@ -31,10 +31,23 @@ struct ElapsedTimeUnit {
 
 class ElapsedTime {
     var value: ElapsedTimeUnit
-    var next: ElapsedTime?
+    private var _next: ElapsedTime?
+    private var advanceAt: Int?
     
+    var next: ElapsedTime? {
+        get {
+            return _next
+        }
+        set {
+            _next = newValue
+            if let newVal = newValue?.value.unit.value {
+                advanceAt = newVal / value.unit.value
+            }
+            
+        }
+    }
     var displayZero: Bool {
-        return next != nil
+        return _next != nil
     }
     
     convenience init(_ timeUnit: TimeUnit) {
@@ -51,9 +64,11 @@ class ElapsedTime {
     
     func increment() {
         var nextVal = value.value + 1
-        if let next = next, nextVal == next.value.unit.value {
-            next.increment()
-            nextVal = 0
+        if let next = _next, let adv = advanceAt  {
+            if nextVal == adv {
+                next.increment()
+                nextVal = 0
+            }
         }
         self.value.value = nextVal
     }
@@ -64,13 +79,13 @@ class ElapsedTime {
     }
     
     func advanceBy(unit: TimeUnit, amount: Int) {
-        assert(unit == value.unit || next != nil)
+        assert(unit == value.unit || _next != nil)
         if unit == value.unit {
             for _ in 0..<amount {
                 increment()
             }
         } else {
-            next?.advanceBy(unit: unit, amount: amount)
+            _next?.advanceBy(unit: unit, amount: amount)
         }
     }
     
@@ -88,7 +103,7 @@ class ElapsedTime {
     }
     
     private func nextDisplay() -> String {
-        if let nextDisplay = next?.display(), !nextDisplay.isEmpty {
+        if let nextDisplay = _next?.display(), !nextDisplay.isEmpty {
             return nextDisplay + ":"
         }
         return ""

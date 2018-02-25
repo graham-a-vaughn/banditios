@@ -76,7 +76,7 @@ extension GoTimeRow : IdentifiableType, Equatable {
 class GoTimeViewModel {
     private let disposeBag = DisposeBag()
     
-    private let goTimeGroup = GoTimeGroup(goTimes: nil)
+    let goTimeGroup = GoTimeGroup(goTimes: nil)
     private let typeConfig: GoTimeTypeConfig
     
     private let relay = ReplaySubject<TrackingStateModel>.create(bufferSize: 1)
@@ -120,6 +120,10 @@ class GoTimeViewModel {
             stop()
             let model = TrackingStateModel(goTime: nil, goTimeGroup: goTimeGroup, state: .stopped)
             relay.onNext(model)
+        case .saved:
+            save()
+            let model = TrackingStateModel(goTime: nil, goTimeGroup: nil, state: .saved)
+            relay.onNext(model)
         }
     }
         
@@ -141,6 +145,10 @@ class GoTimeViewModel {
     /// Stops execution of the current go time
     func stop() {
         goTimeGroup.stop()
+        
+    }
+    
+    func save() {
         do {
             try persistenceManager.saveGoTimes(goTimeGroup)
         } catch {

@@ -46,12 +46,12 @@ class GoTimeGroup: NSObject, NSCoding {
         return items.last?.end
     }
     
-    var isEmpty: Bool {
-       return goTimes.head == nil
-    }
-    
     var size: Int {
         return items.count
+    }
+    
+    var isEmpty: Bool {
+       return size == 0
     }
     
     var isEnded: Bool {
@@ -62,10 +62,8 @@ class GoTimeGroup: NSObject, NSCoding {
         return locked
     }
     
-    convenience init(goTimes: [GoTime]?) {
-        let id = Int(Date.now.timeIntervalSince1970)
-        let lastModified = Date.now
-        self.init(id: id, lastModified: lastModified, goTimes: goTimes ?? [])
+    func current() -> GoTime? {
+        return goTimes.peek()
     }
     
     required init(id: Int, lastModified: Date, goTimes: [GoTime]) {
@@ -76,10 +74,10 @@ class GoTimeGroup: NSObject, NSCoding {
         publisher.on(.next(self))
     }
     
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(goTimes.list(), forKey: GoTimeGroupProps.goTimes)
-        aCoder.encodeCInt(Int32(id), forKey: GoTimeGroupProps.id)
-        aCoder.encode(lastModified, forKey: GoTimeGroupProps.lastModified)
+    convenience init(goTimes: [GoTime]?) {
+        let id = Int(Date.now.timeIntervalSince1970)
+        let lastModified = Date.now
+        self.init(id: id, lastModified: lastModified, goTimes: goTimes ?? [])
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -97,16 +95,16 @@ class GoTimeGroup: NSObject, NSCoding {
         self.init(id: id, lastModified: lastModified, goTimes: decodeTimes)
     }
     
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(goTimes.list(), forKey: GoTimeGroupProps.goTimes)
+        aCoder.encodeCInt(Int32(id), forKey: GoTimeGroupProps.id)
+        aCoder.encode(lastModified, forKey: GoTimeGroupProps.lastModified)
+    }
+    
     func add(_ goTime: GoTime) {
         goTimes.add(goTime)
         publisher.on(.next(self))
     }
-    
-    func current() -> GoTime? {
-        return goTimes.peek()
-    }
-    
-    
     
     func stop() {
         if !isEmpty {

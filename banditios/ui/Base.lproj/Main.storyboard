@@ -39,20 +39,20 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJU-Qp-8D1" userLabel="Type">
                                                         <rect key="frame" x="0.0" y="0.0" width="125" height="64"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:45" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1AI-8V-54s" userLabel="Start">
                                                         <rect key="frame" x="125" y="0.0" width="125" height="64"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23:44" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTq-IG-XFW" userLabel="Duration">
                                                         <rect key="frame" x="250" y="0.0" width="125" height="64"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="17"/>
-                                                        <color key="textColor" red="0.23087520189999999" green="1" blue="0.51808724740000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="textColor" red="0.14256532425679175" green="0.62788047082228116" blue="0.32590771479835196" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -143,7 +143,7 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:88" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKB-j2-Mja" userLabel="Duration Label">
                                                                     <rect key="frame" x="230.5" y="0.0" width="115" height="20"/>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="17"/>
-                                                                    <color key="textColor" red="0.75800936669999996" green="0.23633984599999999" blue="0.25896780219999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    <color key="textColor" red="0.28458795396058262" green="0.38636109175693878" blue="0.89609582227029172" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -166,7 +166,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dct-ek-6oS" userLabel="Div View">
-                                                            <rect key="frame" x="-0.5" y="0.0" width="365" height="2"/>
+                                                            <rect key="frame" x="-0.5" y="20" width="365" height="2"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="2" id="CM0-du-jv6"/>
@@ -180,7 +180,7 @@
                                                         <constraint firstItem="dct-ek-6oS" firstAttribute="centerX" secondItem="Pcu-jZ-3lX" secondAttribute="centerX" id="BtX-Ag-hVE"/>
                                                         <constraint firstItem="U3b-TK-xdo" firstAttribute="trailing" secondItem="Pcu-jZ-3lX" secondAttribute="trailing" constant="-10" id="Sr5-Pb-W78"/>
                                                         <constraint firstItem="dct-ek-6oS" firstAttribute="width" secondItem="Pcu-jZ-3lX" secondAttribute="width" id="T3f-tm-aEY"/>
-                                                        <constraint firstItem="dct-ek-6oS" firstAttribute="top" secondItem="Pcu-jZ-3lX" secondAttribute="top" id="bdO-LX-kVw"/>
+                                                        <constraint firstItem="dct-ek-6oS" firstAttribute="top" secondItem="Pcu-jZ-3lX" secondAttribute="bottom" id="bdO-LX-kVw"/>
                                                         <constraint firstItem="U3b-TK-xdo" firstAttribute="centerY" secondItem="Pcu-jZ-3lX" secondAttribute="centerY" id="ceJ-0D-WQd"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
@@ -218,57 +218,11 @@
                                     <constraint firstItem="7nQ-Ui-Hxp" firstAttribute="centerX" secondItem="fmH-bG-syi" secondAttribute="centerX" id="vET-bN-qzu"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oIf-pc-ZYR" userLabel="Button View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oIf-pc-ZYR" userLabel="Button View" customClass="TimeTrackingButtonView" customModule="banditios" customModuleProvider="target">
                                 <rect key="frame" x="-0.5" y="528" width="375" height="70"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7LV-JC-mMP">
-                                        <rect key="frame" x="45" y="10" width="150" height="50"/>
-                                        <color key="backgroundColor" red="0.2144634481330327" green="0.5232509946533157" blue="0.33333282229814176" alpha="0.90134921395705525" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="5bL-3l-3TG"/>
-                                            <constraint firstAttribute="height" constant="50" id="tHs-o4-upp"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="32"/>
-                                        <state key="normal" title="GO">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="16"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="0.0"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJa-4f-EMg" userLabel="Stop Button">
-                                        <rect key="frame" x="220" y="15" width="110" height="40"/>
-                                        <color key="backgroundColor" red="0.75800936671087538" green="0.23633984596298477" blue="0.25896780224456223" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Eeh-VY-hPG"/>
-                                            <constraint firstAttribute="width" constant="110" id="dnr-Za-LUl"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
-                                        <state key="normal" title="STOP">
-                                            <color key="titleColor" red="0.1333333333" green="0.1333333333" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="16"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="MJa-4f-EMg" secondAttribute="trailing" constant="45" id="5E0-wm-Ke1"/>
-                                    <constraint firstItem="7LV-JC-mMP" firstAttribute="leading" secondItem="oIf-pc-ZYR" secondAttribute="leading" constant="45" id="5Zs-Q1-9x0"/>
                                     <constraint firstAttribute="height" constant="70" id="ZFv-xt-y7l"/>
-                                    <constraint firstItem="7LV-JC-mMP" firstAttribute="centerY" secondItem="oIf-pc-ZYR" secondAttribute="centerY" id="s6g-xl-O05"/>
-                                    <constraint firstItem="MJa-4f-EMg" firstAttribute="centerY" secondItem="oIf-pc-ZYR" secondAttribute="centerY" id="yrL-Ja-Mhw"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -287,9 +241,8 @@
                     <tabBarItem key="tabBarItem" title="Track" image="first" id="acW-dT-cKf" userLabel="Track"/>
                     <connections>
                         <outlet property="activeView" destination="mUU-NJ-laT" id="XvE-z2-N6M"/>
-                        <outlet property="goButton" destination="7LV-JC-mMP" id="ons-vb-SQL"/>
+                        <outlet property="buttonView" destination="oIf-pc-ZYR" id="wDJ-4N-i2V"/>
                         <outlet property="goTimesTable" destination="7nQ-Ui-Hxp" id="sc2-Aj-mIm"/>
-                        <outlet property="stopButton" destination="MJa-4f-EMg" id="Wea-56-NMr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>

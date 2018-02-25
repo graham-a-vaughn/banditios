@@ -16,24 +16,25 @@ class TrackTimeViewController: UIViewController {
     static let cellHeight: CGFloat = 64.0
     
     @IBOutlet var activeView: ActiveGoTimeView!
-    @IBOutlet var goButton: UIButton!
-    @IBOutlet var stopButton: UIButton!
     @IBOutlet var goTimesTable: UITableView!
     
+    @IBOutlet var buttonView: TimeTrackingButtonView!
     var viewModel = GoTimeViewModel()
     
     private let sectionRelay = BehaviorRelay<[GoTimeSection]?>(value: nil)
     
-    private let goTimeGroup = GoTimeGroup(goTimes: nil)
-    
     private var dataSource: RxTableViewSectionedAnimatedDataSource<GoTimeSection>?
     
-    private var goTimeButtonTappedObs: Observable<Void> = Observable.empty()
-    private var stopButtonTappedObs: Observable<Void> = Observable.empty()
     private var goTimeGroupCollectionObs: Observable<[GoTimeSection]> = Observable.empty()
+    
+    private let cxnDisposable = SerialDisposable()
+    private let stateDisposable = SerialDisposable()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        goTimesTable.delegate = self
+        disposeBag.insert(cxnDisposable)
+        disposeBag.insert(stateDisposable)
         configure()
     }
     
@@ -43,8 +44,9 @@ class TrackTimeViewController: UIViewController {
     }
     
     private func configure() {
-        goTimesTable.delegate = self
+        
         activeView.configure(viewModel.trackingStateObs)
+        buttonView.configure(viewModel)
         configureObservables()
     }
     
@@ -56,6 +58,14 @@ class TrackTimeViewController: UIViewController {
         case .stopped:
             guard let goTimeGroup = new.goTimeGroup else { return }
             sectionRelay.accept([GoTimeSection(goTimeGroup: goTimeGroup)])
+        case .saved:
+            viewModel = GoTimeViewModel()
+            stateDisposable.disposable = viewModel.trackingStateObs.subscribeNext(weak: self) { strongSelf, state in
+                strongSelf.stateChanged(state)
+            }
+            sectionRelay.accept([GoTimeSection(goTimeGroup: viewModel.goTimeGroup)])
+            activeView.observe(viewModel.trackingStateObs)
+            buttonView.configure(viewModel)
         default:
             return
         }
@@ -65,28 +75,6 @@ class TrackTimeViewController: UIViewController {
     
     private func configureObservables() {
         
-        goTimeButtonTappedObs = goButton.rx.tap.asObservable()
-        goTimeButtonTappedObs
-            .subscribe(onNext: { [weak self] in
-                guard let strongSelf = self else { return }
-            
-                //let go = strongSelf.viewModel.nextGoTime()
-                //strongSelf.activeView.configure(go)
-                strongSelf.viewModel.transition(.tracking)
-            })
-            .disposed(by: disposeBag)
-        
-        stopButtonTappedObs = stopButton.rx.tap.asObservable()
-        stopButtonTappedObs
-            .subscribe(onNext: { [weak self] in
-                guard let strongSelf = self else { return }
-                
-                //strongSelf.viewModel.stop()
-                //strongSelf.activeView.ready()
-                strongSelf.viewModel.transition(.stopped)
-            })
-            .disposed(by: disposeBag)
-        
         goTimeGroupCollectionObs = sectionRelay.asObservable().unwrap()
         let dataSource = RxTableViewSectionedAnimatedDataSource<GoTimeSection>(configureCell:
         { [weak self] _, tableView, _, item in
@@ -95,14 +83,14 @@ class TrackTimeViewController: UIViewController {
         })
         self.dataSource = dataSource
         
-        goTimeGroupCollectionObs
+        cxnDisposable.disposable = goTimeGroupCollectionObs
             .bind(to: goTimesTable.rx.items(dataSource: dataSource))
-            .disposed(by: disposeBag)
         
-        viewModel.trackingStateObs.subscribeNext(weak: self) { strongSelf, state in
+        
+        stateDisposable.disposable = viewModel.trackingStateObs.subscribeNext(weak: self) { strongSelf, state in
             strongSelf.stateChanged(state)
         }
-        .disposed(by: disposeBag)
+        
     }
     
     private func buildCell(tableView: UITableView, row: GoTimeRow) -> UITableViewCell {
