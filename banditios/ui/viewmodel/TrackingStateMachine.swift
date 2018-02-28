@@ -15,6 +15,12 @@ enum TrackingState {
     case resumed
     case stopped
     case saved
+    /**
+     Per-state button properties:
+     is shown?
+     go-to state
+     appearance
+ **/
 }
 
 struct TrackingStateModel {

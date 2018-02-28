@@ -27,6 +27,7 @@
 		BF51158E202611D70016589F /* ElapsedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF51158D202611D70016589F /* ElapsedTime.swift */; };
 		BF51159420261BCA0016589F /* ObservableType+Bandit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF51159320261BCA0016589F /* ObservableType+Bandit.swift */; };
 		BF6BF413202816CA006E0086 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6BF412202816CA006E0086 /* PersistenceManager.swift */; };
+		BF6E6F5A20464E6B0031373D /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6E6F5920464E6B0031373D /* ColorUtils.swift */; };
 		BF8FBAA62026CF8E00A43D91 /* ActivityTransitionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FBAA52026CF8E00A43D91 /* ActivityTransitionHelper.swift */; };
 		BF95B0BC201E76F100151A82 /* ActiveGoTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF95B0BB201E76F100151A82 /* ActiveGoTimeView.swift */; };
 		BFA4E9DD2033FA05008E6E74 /* TrackingStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA4E9DC2033FA05008E6E74 /* TrackingStateMachine.swift */; };
@@ -81,6 +82,7 @@
 		BF51158D202611D70016589F /* ElapsedTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTime.swift; sourceTree = "<group>"; };
 		BF51159320261BCA0016589F /* ObservableType+Bandit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Bandit.swift"; sourceTree = "<group>"; };
 		BF6BF412202816CA006E0086 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		BF6E6F5920464E6B0031373D /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		BF8FBAA52026CF8E00A43D91 /* ActivityTransitionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTransitionHelper.swift; sourceTree = "<group>"; };
 		BF95B0BB201E76F100151A82 /* ActiveGoTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGoTimeView.swift; sourceTree = "<group>"; };
 		BFA4E9DC2033FA05008E6E74 /* TrackingStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingStateMachine.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 		BF51158F202614980016589F /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				BF6E6F5820464E480031373D /* utils */,
 				BFEEA160203C761F009DDE27 /* common */,
 				BFE0E978200FF7090049E939 /* viewmodel */,
 				BF511590202616400016589F /* view */,
@@ -241,6 +244,14 @@
 				BF6BF412202816CA006E0086 /* PersistenceManager.swift */,
 			);
 			path = data;
+			sourceTree = "<group>";
+		};
+		BF6E6F5820464E480031373D /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				BF6E6F5920464E6B0031373D /* ColorUtils.swift */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 		BFBD472A2013F08E00C43D78 /* utils */ = {
@@ -529,6 +540,7 @@
 				BF45CD64200D12720061AEB0 /* AppDelegate.swift in Sources */,
 				BFD0DDE7202EB93D002614C4 /* ErrorHelper.swift in Sources */,
 				BF45CD66200D12720061AEB0 /* TrackTimeViewController.swift in Sources */,
+				BF6E6F5A20464E6B0031373D /* ColorUtils.swift in Sources */,
 				BF009C75200D22C70071A142 /* NSObject+Bandit.swift in Sources */,
 				BF009C79200D236C0071A142 /* DateFormatter+Bandit.swift in Sources */,
 				BF51159420261BCA0016589F /* ObservableType+Bandit.swift in Sources */,
