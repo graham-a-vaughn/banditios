@@ -60,12 +60,7 @@ class Pause: NSObject, NSCoding {
 }
 
 class GoTime: NSObject, NSCoding {
-    
-    static let persistDir = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = persistDir.appendingPathComponent("goTime")
-    
     private var pauses: [Pause] = []
-    
     
     var isPaused: Bool {
         return pauses.last?.start != nil
@@ -120,6 +115,12 @@ class GoTime: NSObject, NSCoding {
             return acc
         }
     }
+    
+    var elapsedTime: TimeInterval {
+        let final = end ?? Date.now
+        return final - start - timePaused
+    }
+    
     convenience init(start: Date, type: GoTimeType) {
         self.init(start: start, end: nil, type: type)
     }

@@ -10,11 +10,17 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+struct ElapsedTimeValue {
+    let elapsedTime: TimeInterval
+    let display: String
+}
+
 class ElapsedTimeViewModel {
     let head: ElapsedTime
     private let timeDisplayRelay: BehaviorRelay<String> = BehaviorRelay(value: "")
     private var durationTimer: Timer? = nil
     private let displayObs: Observable<String>
+    private let elapsedTimeRelay: BehaviorRelay<TimeInterval> = BehaviorRelay(value: 0)
     
     convenience init() {
         self.init(toUnit: .hour)
@@ -48,12 +54,22 @@ class ElapsedTimeViewModel {
         return head.display()
     }
     
+    func pause() {
+        _ = stop()
+        durationTimer = nil
+    }
+    
+    func resume() {
+        startTimer()
+    }
+    
     private func startTimer() {
         guard self.durationTimer == nil else { return }
         let durationTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             guard let strongSelf = self else { return }
             
             strongSelf.timeDisplayRelay.accept(strongSelf.head.incrementDisplay())
+            strongSelf.elapsedTimeRelay.accept(strongSelf.elapsedTimeRelay.value + 1)
         }
         self.durationTimer = durationTimer
     }

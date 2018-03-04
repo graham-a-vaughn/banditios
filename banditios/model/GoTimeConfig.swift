@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 struct GoTimeType {
     var name: String
     var primary: Bool = false

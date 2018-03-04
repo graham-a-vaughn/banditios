@@ -89,7 +89,12 @@ class TimeTrackingButtonView: UIView {
         initializeUI()
     }
     
-    func configure(_ viewModel: GoTimeViewModel) {
+    /**
+     Should be 2 paradigms:
+     Listen for tracking state (1 obs that doesn't need to be reset)
+     Listen for vm (1 obs that doesn't need to be reset)
+ **/
+    func observeViewModel(_ viewModel: GoTimeViewModel) {
         stateObs = viewModel.trackingStateObs
         stateDisposable.disposable = stateObs.subscribeNext(weak: self) { strongSelf, model in
             strongSelf.stateChanged(model)
@@ -135,13 +140,14 @@ class TimeTrackingButtonView: UIView {
     
     private func initializeMaskLayout() {
         maskingView.alpha = 0.0
+        maskingView.backgroundColor = UIColor.black
         addSubview(maskingView)
         let mskfc: [NSLayoutConstraint] = [
-            left(maskingView) |==| left(self),
-            right(maskingView) |==| right(self),
+            leading(maskingView) |==| leading(self),
+            trailing(maskingView) |==| trailing(self) |-| 10,
             top(maskingView) |==| top(self),
-            bottom(maskingView) |==| bottom(self),
-            ]
+            bottom(maskingView) |==| bottom(self) |-| 5,
+        ]
         NSLayoutConstraint.activate(mskfc)
     }
     

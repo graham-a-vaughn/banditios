@@ -12,57 +12,54 @@ import RxSwift
 import RxCocoa
 
 class ActivityTransitionHelper {
-    private let animationQueue = DispatchQueue(label: "com.vaughn.banditios.activityTransitionQueue")
-    private let readyBlinkQueue = DispatchQueue(label: "com.vaughn.banditios.readyBlinkQueue")
-    private let spinoffQueue = DispatchQueue(label: "com.vaughn.banditios.spinoffQueue")
+    private static let animationQueue = DispatchQueue(label: "com.vaughn.banditios.activityTransitionQueue")
+    private static let defaultDuration: TimeInterval = 1.0
     
-    private var blinking = BehaviorRelay<CGFloat>(value: 1.0)
-    private var blinkTimer: Timer? = nil
+    private let showAlpha: CGFloat
+    private let hideAlpha: CGFloat
+    private let duration: TimeInterval
     
-    func showElement(_ transitionView: UIView, _ duration: TimeInterval? = 1.0 ) {
+    private var queue: DispatchQueue {
+        return ActivityTransitionHelper.animationQueue
+    }
+    
+    private var defaultDuration: TimeInterval {
+        return ActivityTransitionHelper.defaultDuration
+    }
+    
+    required init(_ show: CGFloat, _ hide: CGFloat, duration: TimeInterval) {
+        self.showAlpha = show
+        self.hideAlpha = hide
+        self.duration = duration
+    }
+    
+    convenience init() {
+        self.init(1.0, 0.0, duration: ActivityTransitionHelper.defaultDuration)
+    }
+    
+    func showElement(_ transitionView: UIView) {
         _ = show(transitionView)
     }
     
-    func hideElement(_ transitionView: UIView, _ duration: TimeInterval? = 1.0) {
-        _ = hide(transitionView, duration ?? 1.0)
+    func hideElement(_ transitionView: UIView) {
+        _ = hide(transitionView)
     }
     
-    private func show(_ transitionView: UIView, _ duration: TimeInterval? = 1.0) -> Bool {
-        animationQueue.sync  {
-            UIView.animate(withDuration: duration ?? 1.0) {
-                transitionView.alpha = 1.0
+    private func show(_ transitionView: UIView) -> Bool {
+        queue.sync  {
+            UIView.animate(withDuration: duration) {
+                transitionView.alpha = self.showAlpha
             }
         }
         return true
     }
     
-    private func hide(_ transitionView: UIView, _ duration: TimeInterval? = 1.0) -> Bool {
-        animationQueue.sync {
-            UIView.animate(withDuration: duration ?? 1.0) {
-                transitionView.alpha = 0.0
+    private func hide(_ transitionView: UIView) -> Bool {
+        queue.sync {
+            UIView.animate(withDuration: duration) {
+                transitionView.alpha = self.hideAlpha
             }
         }
         return true
-    }
-    
-    func blink(_ view: UIView, _ duration: TimeInterval? = 1.0) -> Disposable {
-        return MainScheduler.instance.schedulePeriodic(view, startAfter: 0, period: 1.0) { [weak self] view in
-            guard let strongSelf = self else { return view }
-            
-            UIView.animate(withDuration: duration ?? 1.0, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.5, options: UIViewAnimationOptions.curveEaseIn, animations: {
-                view.alpha = strongSelf.blinkAlpha()
-            }, completion: nil)
-            return view
-        }
-    }
-    
-    private func blinkAlpha() -> CGFloat {
-        let current = blinking.value
-        let next: CGFloat = current == 1.0 ? 0.0 : 1.0
-        blinking.accept(next)
-        return next
-    }
-    func stopBlinkingReadyLabel() {
-        blinkTimer?.invalidate()
     }
 }

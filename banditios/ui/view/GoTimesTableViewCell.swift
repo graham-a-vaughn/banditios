@@ -29,20 +29,17 @@ class GoTimesTableViewCell: UITableViewCell {
     func configure(_ goTime: GoTime) {
         reuseDisposeBag.insert(elapsedTimeDisposable)
         
-        let endDisplay = goTime.end?.asTimeWithSecondsString() ?? "???"
+        let endDisplay = goTime.elapsedTime
         typeLabel.text = "\(goTime.type.name)"
         timeLabel.text = "\(goTime.start.asTimeWithSecondsString())"
         endLabel.text = "\(endDisplay)"
         
-        if let endTime = goTime.end {
-            let elapsedTimeDisplay = ElapsedTimeViewModel(startingAt: endTime - goTime.start)
+        if goTime.end != nil {
+            let elapsedTimeDisplay = ElapsedTimeViewModel(startingAt: endDisplay)
             durationLabel.text = "\(elapsedTimeDisplay.stop())"
         } else {
             observeEnd(goTime)
         }
-        
-        
-        
         
         self.goTime = goTime
     }

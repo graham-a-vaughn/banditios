@@ -79,7 +79,7 @@ class GoTimeViewModel {
     let goTimeGroup = GoTimeGroup(goTimes: nil)
     private let typeConfig: GoTimeTypeConfig
     
-    private let relay = ReplaySubject<TrackingStateModel>.create(bufferSize: 1)
+    private let trackingStateReplay = ReplaySubject<TrackingStateModel>.create(bufferSize: 1)
     
     private let persistenceManager = PersistenceManager()
     private let errorHelper = ErrorHelper()
@@ -88,7 +88,7 @@ class GoTimeViewModel {
     private let work = GoTimeType(name: "Work", primary: true)
     
     var trackingStateObs: Observable<TrackingStateModel> {
-        return relay.asObservable()
+        return trackingStateReplay.asObservable()
     }
     
     init() {
@@ -101,29 +101,29 @@ class GoTimeViewModel {
         switch state {
         case .ready:
             let model = TrackingStateModel(goTime: nil, goTimeGroup: goTimeGroup, state: .ready)
-            relay.onNext(model)
+            trackingStateReplay.onNext(model)
         case .tracking:
             let goTime = nextGoTime()
             let model = TrackingStateModel(goTime: goTime, goTimeGroup: goTimeGroup, state: .tracking)
-            relay.onNext(model)
+            trackingStateReplay.onNext(model)
         case .paused:
             guard let goTime = goTimeGroup.current() else { return }
             goTime.pause()
             let model = TrackingStateModel(goTime: goTime, goTimeGroup: goTimeGroup, state: .paused)
-            relay.onNext(model)
+            trackingStateReplay.onNext(model)
         case .resumed:
             guard let goTime = goTimeGroup.current() else { return }
             goTime.resume()
             let model = TrackingStateModel(goTime: goTime, goTimeGroup: goTimeGroup, state: .resumed)
-            relay.onNext(model)
+            trackingStateReplay.onNext(model)
         case .stopped:
             stop()
             let model = TrackingStateModel(goTime: nil, goTimeGroup: goTimeGroup, state: .stopped)
-            relay.onNext(model)
+            trackingStateReplay.onNext(model)
         case .saved:
             save()
             let model = TrackingStateModel(goTime: nil, goTimeGroup: nil, state: .saved)
-            relay.onNext(model)
+            trackingStateReplay.onNext(model)
         }
     }
         
